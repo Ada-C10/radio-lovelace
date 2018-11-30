@@ -9,6 +9,22 @@ class Playlist extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      tracks: this.props.tracks
+    }
+  }
+
+  reshuffleSongs = (index) => {
+
+    let tracks = this.state.tracks;
+    const track = tracks.splice(index, 1)[0];
+
+    tracks.unshift(track);
+
+    this.setState({
+      tracks: tracks
+    });
+
   }
 
   calculatePlayTime = (tracks) => {
@@ -34,13 +50,14 @@ class Playlist extends Component {
   }
 
   render () {
-    const tracks = this.props.tracks;
+    const tracks = this.state.tracks;
     const trackCount = tracks.length;
     const playtime = this.calculatePlayTime(tracks);
 
     const trackElements = tracks.map((track, i) => {
       // We use "spread syntax" here to pass in all the properties of
       // the variable 'track' as props. Go look it up!
+
       return (
         <Track
           key={i}

@@ -11,7 +11,8 @@ class Track extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorite: false
+      favorite: false,
+      index: this.props.index
     }
   }
 
@@ -26,7 +27,7 @@ class Track extends Component {
   }
 
   render() {
-    const {title, artist, playtime, albumart, favorite} = this.props;
+    const {title, artist, playtime, albumart} = this.props;
 
     return (
 

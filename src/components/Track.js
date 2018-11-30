@@ -19,7 +19,10 @@ class Track extends Component {
     this.setState({
       favorite: !this.state.favorite
     });
+  }
 
+  sendToTop = () => {
+    this.props.sendToTopCallback(this.props.index);
   }
 
   render() {
@@ -40,6 +43,7 @@ class Track extends Component {
         <p className="track--playtime">{playtime}</p>
         <button
           className="track--control track--to-top"
+          onClick={this.sendToTop}
           >
           <span role="img" aria-label="send to top">🔝</span>
         </button>

@@ -10,10 +10,21 @@ class Track extends Component {
 
   constructor(props) {
     super(props);
-  };
+    this.state = {
+      favorite: false
+    }
+  }
+
+  markFavorite = () => {
+    this.setState({
+      favorite: !this.state.favorite
+    });
+
+  }
 
   render() {
     const {title, artist, playtime, albumart, favorite} = this.props;
+
     return (
 
       <li className="track">
@@ -22,7 +33,8 @@ class Track extends Component {
         <input
           type="checkbox"
           className="track--favorite"
-          checked={!favorite}
+          checked={!this.state.favorite}
+          onChange={this.markFavorite}
         />
         <p className="track--artist">{artist}</p>
         <p className="track--playtime">{playtime}</p>

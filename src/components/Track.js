@@ -8,11 +8,14 @@ import "./styles/Track.css";
 
 // takes keys from json and turns into variables passed into Track
 const Track = ({title, artist, playtime, albumart, favorite}) => {
+// class Track extends React.Component {
 
-  // clickFavoriteButton = () => {
+
+  // clickFavoriteButton = (event) => {
   //   this.favorite = !this.favorite;
   // }
 
+  // render() {
   return (
     <li className="track">
       <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
@@ -37,6 +40,7 @@ const Track = ({title, artist, playtime, albumart, favorite}) => {
     </li>
   );
 };
+// }
 
 Track.propTypes = {
   title: PropTypes.string,

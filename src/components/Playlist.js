@@ -4,6 +4,8 @@ import './styles/Playlist.css';
 
 import Track from './Track';
 
+// Calculate total Playlist time
+// Must specify playlist.morningTracks or playlist.eveningTracks?
 const calculatePlayTime = (tracks) => {
   let minutes = 0;
   let seconds = 0;
@@ -25,13 +27,15 @@ const calculatePlayTime = (tracks) => {
   return `${hours}:${minutes}:${seconds}`;
 }
 
+// Must specify morning or evening?
 const Playlist = (props) => {
   const tracks = props.tracks;
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);
   const trackElements = tracks.map((track, i) => {
-    // We use "spread syntax" here to pass in all the properties of 
+    // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
+    // -- what does track have?
     return (
       <Track
         key={i}
@@ -39,7 +43,8 @@ const Playlist = (props) => {
       />
     );
   });
-
+  
+// props = Playlist {side: m /e , tracks: p.m / p.e}
   return (
     <div className="playlist">
       <h2>{props.side} Playlist</h2>

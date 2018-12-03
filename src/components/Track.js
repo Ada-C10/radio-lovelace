@@ -23,7 +23,11 @@ class Track extends React.Component {
     console.log(`${this.props.title} star clicked`);
     this.props.isFavorite(this.props.index);
     this.setState({favorite: !this.state.favorite});
+  }
 
+  clickTopButton = () => {
+    console.log(`Track ${this.props.index} -  ${this.props.title} voted to top of track list`);
+    this.props.sendTrackToTop(this.props.index);
   }
 
   render() {
@@ -41,6 +45,7 @@ class Track extends React.Component {
         <p className="track--playtime">{this.props.playtime}</p>
         <button
           className="track--control track--to-top"
+          onClick={this.clickTopButton}
           >
           <span role="img" aria-label="send to top">🔝</span>
         </button>

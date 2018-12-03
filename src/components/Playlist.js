@@ -41,9 +41,17 @@ class Playlist extends React.Component {
     updatedFavoriteData[trackIndex].isFavorite = !updatedFavoriteData[trackIndex].isFavorite;
     this.setState({tracks: updatedFavoriteData});
   }
+
+  sendTrackToTop = (trackIndex) => {
+    console.log(`track with index ${trackIndex} upvoted - Playlist callback`);
+    let updatedTrackList = this.state.tracks;
+    updatedTrackList.unshift(updatedTrackList.splice(trackIndex, 1)[0]);
+    this.setState({tracks: updatedTrackList});
+  }
+
   // Must specify morning or evening?
   // const Playlist = (props) => {
-render() {
+  render() {
     const tracks = this.state.tracks;
     const trackCount = tracks.length;
     const playtime = this.calculatePlayTime(tracks);

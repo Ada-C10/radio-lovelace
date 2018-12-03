@@ -65,6 +65,7 @@ class Playlist extends React.Component {
           index={i}
           {...track}
           isFavorite={this.trackStarClicked}
+          topvote={this.sendTrackToTop}
         />
       );
     });

@@ -27,7 +27,7 @@ class Track extends React.Component {
 
   clickTopButton = () => {
     console.log(`Track ${this.props.index} -  ${this.props.title} voted to top of track list`);
-    this.props.sendTrackToTop(this.props.index);
+    this.props.topvote(this.props.index);
   }
 
   render() {

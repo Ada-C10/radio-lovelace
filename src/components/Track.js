@@ -21,9 +21,10 @@ const Track = ({title, artist, playtime, albumart, favorite}) => {
       <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
       <h3 className="track--title">{title}</h3>
       <input
-        type="checkbox" 
+        type="checkbox"
         className="track--favorite"
-        checked={!favorite}
+        checked={this.favorite}
+        onChange={this.handleChange}
       />
       <p className="track--artist">{artist}</p>
       <p className="track--playtime">{playtime}</p>

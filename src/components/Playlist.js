@@ -39,6 +39,7 @@ const Playlist = (props) => {
     return (
       <Track
         key={i}
+        index={i}
         {...track}
       />
     );

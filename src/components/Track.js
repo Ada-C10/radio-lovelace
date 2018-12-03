@@ -11,10 +11,20 @@ import "./styles/Track.css";
 class Track extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      favorite: false
+    };
+
+    this.clickFavoriteButton = this.clickFavoriteButton.bind(this);
   }
-  // clickFavoriteButton = (event) => {
-  //   this.favorite = !this.favorite;
-  // }
+
+  clickFavoriteButton = () => {
+    // console.log(this); 
+    console.log(`${this.props.title} star clicked`);
+    this.setState({
+      favorite: !this.state.favorite
+    });
+  }
 
   render() {
     return (
@@ -24,8 +34,8 @@ class Track extends React.Component {
         <input
           type="checkbox"
           className="track--favorite"
-          checked={this.favorite}
-          onChange={this.handleChange}
+          checked={this.state.favorite}
+          onChange={this.clickFavoriteButton}
         />
         <p className="track--artist">{this.props.artist}</p>
         <p className="track--playtime">{this.props.playtime}</p>
@@ -52,8 +62,8 @@ Track.propTypes = {
   favorite: PropTypes.bool,
 }
 
-Track.defaultProps = {
-  favorite: false,
-}
+// Track.defaultProps = {
+//   favorite: false,
+// }
 
 export default Track;

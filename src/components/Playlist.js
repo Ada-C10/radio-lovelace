@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import './styles/Playlist.css';
 
 import Track from './Track';
 
-const calculatePlayTime = (tracks) => {
-  let minutes = 0;
-  let seconds = 0;
-  tracks.forEach((track) => {
-    const times = track.playtime.split(':');
-    minutes += parseInt(times[0]);
-    seconds += parseInt(times[1]);
-  });
+
+class Playlist extends Component {
+
+  constructor(props) {
+    super(props);
+    this.side = props.side;
+    this.tracks = props.tracks;
+    this.trackCount = props.tracks.length;
+    this.playtime = this.calculatePlayTime(this.tracks)
+
+    this.state = {
+        trackList: props.tracks
+      };
+
+  }
+
+calculatePlayTime = (tracks) => {
+    let minutes = 0;
+    let seconds = 0;
+    tracks.forEach((track) => {
+      const times = track.playtime.split(':');
+      minutes += parseInt(times[0]);
+      seconds += parseInt(times[1]);
+    });
 
   minutes += Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
@@ -25,38 +41,42 @@ const calculatePlayTime = (tracks) => {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-const Playlist = (props) => {
-  const tracks = props.tracks;
-  const trackCount = tracks.length;
-  const playtime = calculatePlayTime(tracks);
-  const trackElements = tracks.map((track, i) => {
-    // We use "spread syntax" here to pass in all the properties of
-    // the variable 'track' as props. Go look it up!
-    return (
-      <Track
-        key={i}
-        {...track}
-        index={i}
-      />
-    );
-  });
 
-  return (
-    <div className="playlist">
-      <h2>{props.side} Playlist</h2>
-      <p>
-        {trackCount} tracks - {playtime}
-      </p>
-      <ul className="playlist--track-list">
-        {trackElements}
-      </ul>
-    </div>
-  );
+
+render(props) {
+
+  const trackList = this.state.trackList
+        .map((track, i)  => {
+            return (
+              <Track
+                key={i}
+                {...track}
+                id={i}
+              />
+            )
+        })
+
+  let sortedTracks = trackList.sort((a, b) => a.props.id - b.props.id);
+
+
+    return (
+      <div className="playlist">
+        <h2>{this.props.side} Playlist</h2>
+        <p>
+          {this.trackCount} tracks - {this.playtime}
+        </p>
+        <ul className="playlist--track-list">
+          {sortedTracks}
+        </ul>
+      </div>
+    );
 }
 
-Playlist.propTypes = {
-  tracks: PropTypes.array,
-  side: PropTypes.string,
+// Playlist.propTypes = {
+//   tracks: PropTypes.array,
+//   side: PropTypes.string,
+// }
+
 }
 
 export default Playlist;

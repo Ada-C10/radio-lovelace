@@ -12,7 +12,7 @@ class Track extends Component {
       this.playtime = props.playtime;
       this.artist = props.artist;
       this.albumart = props.albumart;
-      this.index = props.index;
+      this.id = props.id;
 
       this.state = {
           favorite: false

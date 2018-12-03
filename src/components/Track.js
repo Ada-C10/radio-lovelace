@@ -11,9 +11,6 @@ import "./styles/Track.css";
 class Track extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //
-    // }
   }
   // clickFavoriteButton = (event) => {
   //   this.favorite = !this.favorite;
@@ -27,7 +24,7 @@ class Track extends React.Component {
         <input
           type="checkbox"
           className="track--favorite"
-          checked={this.favorite}
+          checked={!this.favorite}
           onChange={this.handleChange}
         />
         <p className="track--artist">{this.props.artist}</p>
@@ -53,6 +50,10 @@ Track.propTypes = {
   playtime: PropTypes.string,
   albumart: PropTypes.string,
   favorite: PropTypes.bool,
+}
+
+Track.defaultProps = {
+  favorite: false,
 }
 
 export default Track;

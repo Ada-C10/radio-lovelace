@@ -35,17 +35,25 @@ class Playlist extends React.Component {
     return `${hours}:${minutes}:${seconds}`;
   }
 
+// Change favorite to act on id not index?
   trackStarClicked = (trackIndex) => {
     console.log(`track with index ${trackIndex} star clicked - Playlist callback`);
     let updatedFavoriteData = this.state.tracks;
     updatedFavoriteData[trackIndex].isFavorite = !updatedFavoriteData[trackIndex].isFavorite;
     this.setState({tracks: updatedFavoriteData});
+    console.log(this.state.tracks);
   }
 
   sendTrackToTop = (trackIndex) => {
     console.log(`track with index ${trackIndex} upvoted - Playlist callback`);
     let updatedTrackList = this.state.tracks;
     updatedTrackList.unshift(updatedTrackList.splice(trackIndex, 1)[0]);
+    // for (let track in updatedTrackList) {
+    //   if (track["id"]===trackId) {
+    //     console.log(`found ${track.title}`)
+    //   }
+    // }
+
     this.setState({tracks: updatedTrackList});
   }
 

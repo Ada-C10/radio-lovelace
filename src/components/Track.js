@@ -18,11 +18,13 @@ class Track extends React.Component {
     this.clickFavoriteButton = this.clickFavoriteButton.bind(this);
   }
 
+//Change favorite to act on id not index?
   clickFavoriteButton = () => {
     // console.log(this.state.favorite);
     console.log(`${this.props.title} star clicked`);
     this.props.isFavorite(this.props.index);
     this.setState({favorite: !this.state.favorite});
+    // prop and state favorite redundant or possiblility for bug? delete?
   }
 
   clickTopButton = () => {

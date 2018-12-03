@@ -21,9 +21,9 @@ class Track extends React.Component {
   clickFavoriteButton = () => {
     // console.log(this.state.favorite);
     console.log(`${this.props.title} star clicked`);
-    this.setState({
-      favorite: !this.state.favorite
-    });
+    this.props.isFavorite(this.props.index);
+    this.setState({favorite: !this.state.favorite});
+
   }
 
   render() {

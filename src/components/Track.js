@@ -24,7 +24,7 @@ class Track extends React.Component {
         <input
           type="checkbox"
           className="track--favorite"
-          checked={!this.favorite}
+          checked={this.favorite}
           onChange={this.handleChange}
         />
         <p className="track--artist">{this.props.artist}</p>

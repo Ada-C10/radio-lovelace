@@ -19,7 +19,7 @@ class Track extends React.Component {
   }
 
   clickFavoriteButton = () => {
-    // console.log(this); 
+    // console.log(this.state.favorite);
     console.log(`${this.props.title} star clicked`);
     this.setState({
       favorite: !this.state.favorite
@@ -34,7 +34,7 @@ class Track extends React.Component {
         <input
           type="checkbox"
           className="track--favorite"
-          checked={this.state.favorite}
+          checked={!this.state.favorite}
           onChange={this.clickFavoriteButton}
         />
         <p className="track--artist">{this.props.artist}</p>

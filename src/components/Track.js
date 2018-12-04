@@ -15,9 +15,12 @@ class Track extends Component {
       this.id = props.id;
 
       this.state = {
-          favorite: false
+          favorite: false,
+          side: props.side,
+          listOrder: this.id
         };
-      console.log(this.state)
+      console.log(this)
+      // console.log()
   }
 
 
@@ -25,6 +28,16 @@ class Track extends Component {
   onFavoriteChange() {
     console.log(this)
     this.setState({favorite: !this.state.favorite});
+  }
+
+  onUpClicked = () => {
+    this.setState({id: 0});
+    this.props.sortTracksCallback(this)
+    console.log(this)
+  }
+
+  getState(){
+    return this.state;
   }
 
   render(props) {
@@ -46,7 +59,7 @@ class Track extends Component {
           <button
             className="track--control track--to-top"
             >
-            <span role="img" aria-label="send to top">🔝</span>
+            <span role="img" aria-label="send to top" onClick={ this.onUpClicked }>🔝</span>
           </button>
           <button
             className="track--control track--switch"

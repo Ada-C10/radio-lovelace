@@ -16,6 +16,7 @@ class Playlist extends Component {
 
     this.state = {
         trackList: props.tracks
+
       };
 
   }
@@ -42,6 +43,20 @@ calculatePlayTime = (tracks) => {
 }
 
 
+// sortTracks = (index) => {
+//   console.log(this.state.trackList)
+//   // console.log(index)
+//   for (let track of this.state.trackList) {
+//     if (track.id === index) {
+//       let trackArray = [...this.state.trackList]
+//       let removedTrack = trackArray.splice(index, 1)
+//       trackArray.unshift(removedTrack[0])
+//       console.log(trackArray)
+//       this.setState({tracklist: trackArray})
+//     }
+//   }
+// }
+
 
 render(props) {
 
@@ -52,11 +67,11 @@ render(props) {
                 key={i}
                 {...track}
                 id={i}
+                side={this.side}
+                sortTracksCallback = {this.props.sortTracksCallback}
               />
             )
         })
-
-  let sortedTracks = trackList.sort((a, b) => a.props.id - b.props.id);
 
 
     return (
@@ -66,7 +81,7 @@ render(props) {
           {this.trackCount} tracks - {this.playtime}
         </p>
         <ul className="playlist--track-list">
-          {sortedTracks}
+          {trackList}
         </ul>
       </div>
     );

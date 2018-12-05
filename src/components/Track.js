@@ -34,7 +34,8 @@ class Track extends React.Component {
 
   clickMoveArrow = () => {
     console.log(`Arrow clicked to move track to other list`);
-    this.props.switchPlaylistCallback();
+    this.props.switchPlaylistCallback(this.props.index);
+    console.log(this);
   }
 
   render() {

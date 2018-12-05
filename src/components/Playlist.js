@@ -9,7 +9,7 @@ class Playlist extends React.Component {
     super(props);
     this.state = {
       tracks: props.tracks,
-      side: props.side
+      // side: props.side
     }
   }
 // Calculate total Playlist time
@@ -56,17 +56,36 @@ class Playlist extends React.Component {
 
 
 // Move Track on arrow click from morning to evening or evening to morning
-  switchPlaylist = () => {
-    console.log(`user clicked arrow to switch playlist`);
-    let playlistSide = this.state.side;
-    console.log(this.state.side);
 
-    if (playlistSide ==="Morning"){
-      this.setState({side: "Evening"});
-    } else if (playlistSide ==="Evening") {
-      this.setState({side: "Morning"});
-    }
+  switchPlaylist = (trackIndex) => {
+    let updatedPlaylist = this.state.tracks;
+    
+    updatedPlaylist.splice(trackIndex, 1);
+    console.log(this.state.tracks);
   }
+  // switchPlaylist = () => {
+  //   console.log(`user clicked arrow to switch playlist`);
+  //   let playlistSide = this.props.side;
+  //   console.log(this.props);
+  //   console.log(this);
+    // if (playlistSide ==="Morning"){
+    //   this.setState({side: "Evening"});
+    // } else if (playlistSide ==="Evening") {
+    //   this.setState({side: "Morning"});
+    // }
+  // }
+
+  // switchPlaylist = (trackIndex) => {
+  //   console.log(`user clicked arrow to switch playlist`);
+  //   let playlistSide = this.props.side;
+  //   console.log(this.props.tracks);
+  //
+  //   if (playlistSide ==="Morning"){
+  //     this.setState({side: "Evening"});
+  //   } else if (playlistSide ==="Evening") {
+  //     this.setState({side: "Morning"});
+  //   }
+  // }
 
   // Must specify morning or evening?
   // const Playlist = (props) => {

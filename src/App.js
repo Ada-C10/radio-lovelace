@@ -66,7 +66,6 @@ class App extends Component {
         <main className="main">
           <RadioSet
           tracks={this.state.allSongs}
-          sortTracksCallback = {this.sortTracks}
            />
         </main>
       </div>

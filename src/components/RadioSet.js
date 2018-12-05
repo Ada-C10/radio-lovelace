@@ -23,12 +23,10 @@ class RadioSet extends Component {
             <Playlist
               side="Morning"
               tracks={morningTracks}
-              sortTracksCallback = {this.props.sortTracksCallback}
             />
             <Playlist
               side="Evening"
               tracks={eveningTracks}
-              sortTracksCallback = {this.props.sortTracksCallback}
             />
           </section>
         </div>

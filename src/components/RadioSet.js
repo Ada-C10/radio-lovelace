@@ -29,7 +29,6 @@ const RadioSet = (props) => {
         <Playlist
           side="Evening"
           tracks={playlists.eveningTracks}
-        
         />
       </section>
     </div>

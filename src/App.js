@@ -25,16 +25,29 @@ class App extends Component {
         if (song.id === track.props.id) {
           let trackArray = [...this.state.allSongs]
           let removedTrack = trackArray.splice(song.id, 1)
-          console.log(removedTrack)
           trackArray.unshift(removedTrack[0])
-          console.log(trackArray)
           this.setState({allSongs: trackArray}, () => {
             console.log(this.state.allSongs)
           });
-          console.log(this.state.allSongs)
         }
       }
-    } else if (track.props.side === "Evening") {
+    } else {
+      // for (let song of this.state.allSongs) {
+      //   if (song.id === track.props.id) {
+      //     let trackArray = [...this.state.allSongs]
+      //     let removedTrack = [...this.state.allSongs].splice(song.id + 42, 1)
+      //     let firstHalf = [...this.state.allSongs].slice(0, 42)
+      //     let secondHalf = [...this.state.allSongs].slice(43, this.state.allSongs.length)
+      //     secondHalf.unshift(removedTrack[0])
+      //     console.log("second half:")
+      //     console.log(secondHalf)
+      //     let trackArray = firstHalf.concat(secondHalf)
+      //     // console.log(trackArray)
+      //     this.setState({allSongs: trackArray}, () => {
+      //       console.log(this.state.allSongs)
+      //     });
+      //   }
+      // }
 
     }
   }

@@ -9,49 +9,25 @@ class RadioSet extends Component {
   constructor(props) {
     super(props);
     console.log(`Radio set for ${props.tracks.length} tracks`);
-    this.morningTracks = props.tracks.slice(0, props.tracks.length / 2);
-    this.eveningTracks = props.tracks.slice(props.tracks.length / 2, props.tracks.length)
 
-    this.state = {
-        morningTracks: this.morningTracks,
-        eveningTracks: this.eveningTracks
-      };
   }
 
-  // sortTracks = (track) => {
-  //   if (track.props.side === "Morning") {
-  //     for (let song of this.state.morningTracks) {
-  //       if (song.id === track.props.id) {
-  //         let trackArray = [...this.state.morningTracks]
-  //         let removedTrack = trackArray.splice(song.id, 1)
-  //         console.log(removedTrack)
-  //         trackArray.unshift(removedTrack[0])
-  //         console.log(trackArray)
-  //         this.setState({morningTracks: trackArray}, () => {
-  //           console.log(this.state.morningTracks)
-  //         });
-  //         console.log(this.state.morningTracks)
-  //       }
-  //     }
-  //   } else if (track.props.side === "Evening") {
-  //
-  //   }
-  // }
-
   render() {
-    console.log(this.morningTracks)
-    console.log(this.state.eveningTracks)
+
+  const morningTracks = this.props.tracks.slice(0, this.props.tracks.length / 2);
+  const eveningTracks = this.props.tracks.slice(this.props.tracks.length / 2, this.props.tracks.length)
+
       return (
         <div className="radio-set">
           <section className="radio-set--playlist-container">
             <Playlist
               side="Morning"
-              tracks={this.state.morningTracks}
+              tracks={morningTracks}
               sortTracksCallback = {this.props.sortTracksCallback}
             />
             <Playlist
               side="Evening"
-              tracks={this.state.eveningTracks}
+              tracks={eveningTracks}
               sortTracksCallback = {this.props.sortTracksCallback}
             />
           </section>

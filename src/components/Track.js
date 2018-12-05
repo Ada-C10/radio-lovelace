@@ -8,33 +8,16 @@ class Track extends Component {
 
   constructor(props) {
     super(props);
-      this.title = props.title;
-      this.playtime = props.playtime;
-      this.artist = props.artist;
-      this.albumart = props.albumart;
-      this.id = props.id;
-
       this.state = {
           favorite: false,
           side: props.side,
-          listOrder: this.id
         };
-      // console.log()
   }
 
 
-
-  onFavoriteChange() {
-    this.setState({favorite: !this.state.favorite});
-  }
 
   onUpClicked = () => {
-    this.setState({listOrder: 0});
     this.props.sortTracksCallback(this)
-  }
-
-  getState(){
-    return this.state;
   }
 
   render(props) {
@@ -49,7 +32,7 @@ class Track extends Component {
             type="checkbox"
             className="track--favorite"
             checked={this.props.favorite}
-            onChange={this.onFavoriteChange.bind(this)}
+            defaultChecked={!this.state.favorite}
           />
           <p className="track--artist">{this.props.artist}</p>
           <p className="track--playtime">{this.props.playtime}</p>

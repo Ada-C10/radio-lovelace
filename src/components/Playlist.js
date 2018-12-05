@@ -31,6 +31,10 @@ class Playlist extends Component {
     this.props.switchTrackCallback(index, this.props.side);
   }
 
+  markFavorite = (index) => {
+    this.props.favoriteCallback(index, this.props.side);
+  }
+
   calculatePlayTime = (tracks) => {
 
     let minutes = 0;
@@ -66,6 +70,7 @@ class Playlist extends Component {
         <Track
           key={i}
           index={i}
+          favoriteCallback={this.markFavorite}
           sendToTopCallback={this.reshuffleSongs}
           switchTrackCallback={this.switchTrack}
           {...track}

@@ -11,15 +11,12 @@ class Track extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorite: false,
-      index: this.props.index,
+      index: this.props.index
     }
   }
 
   markFavorite = () => {
-    this.setState({
-      favorite: !this.state.favorite
-    });
+    this.props.favoriteCallback(this.state.index);
   }
 
   sendToTop = () => {
@@ -41,7 +38,7 @@ class Track extends Component {
         <input
           type="checkbox"
           className="track--favorite"
-          checked={!this.state.favorite}
+          checked={!this.props.favorite}
           onChange={this.markFavorite}
         />
         <p className="track--artist">{artist}</p>

@@ -8,9 +8,14 @@ class RadioSet extends Component {
   constructor(props) {
     super(props);
 
+    let tracks = this.props.tracks;
+    for (const track of tracks) {
+      track['favorite'] = false;
+    }
+
     this.state = {
-      morningTracks: this.props.tracks.slice(0, this.props.tracks.length / 2),
-      eveningTracks: this.props.tracks.slice(this.props.tracks.length / 2, this.props.tracks.length)
+      morningTracks: tracks.slice(0, this.props.tracks.length / 2),
+      eveningTracks: tracks.slice(this.props.tracks.length / 2, this.props.tracks.length)
     }
   }
 
@@ -36,8 +41,27 @@ class RadioSet extends Component {
 
   }
 
+  markFavorite = (index, side) => {
+
+    if (side === 'Morning') {
+      let tracks = this.state.morningTracks;
+      tracks[index]['favorite'] = !tracks[index]['favorite'];
+      this.setState({
+        morningTracks: tracks
+      })
+    }
+    else {
+      let tracks = this.state.eveningTracks;
+      tracks[index]['favorite'] = !tracks[index]['favorite'];
+      this.setState({
+        eveningTracks: tracks
+      })
+    }
+
+
+  }
+
   render () {
-    console.log(`Radio set for ${this.props.tracks.length} tracks`);
     const playlists = {
       morningTracks: this.state.morningTracks,
       eveningTracks: this.state.eveningTracks
@@ -50,11 +74,13 @@ class RadioSet extends Component {
             side="Morning"
             tracks={playlists.morningTracks}
             switchTrackCallback={this.switchTrack}
+            favoriteCallback={this.markFavorite}
           />
           <Playlist
             side="Evening"
             tracks={playlists.eveningTracks}
             switchTrackCallback={this.switchTrack}
+            favoriteCallback={this.markFavorite}
           />
         </section>
       </div>

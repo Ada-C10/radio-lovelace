@@ -11,6 +11,8 @@ class RadioSet extends React.Component {
   // playlists is an object with --
   // morningTracks: first sliced half of tracks list from App &
   // eveningTracks: second sliced half of tracks list from App
+  //move playlists to be state
+  
   render() {
     const playlists = {
       morningTracks: this.props.tracks.slice(0, props.tracks.length / 2),

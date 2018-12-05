@@ -35,6 +35,7 @@ const Playlist = (props) => {
         key={i}
         updateTrackOrderCallback = { props.updateTrackOrderCallback }
         updateFavoriteCallback = { props.updateFavoriteCallback }
+        switchTrackCallback = { props.switchTrackCallback }
         {...track}
       />
     );

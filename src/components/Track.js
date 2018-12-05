@@ -12,6 +12,10 @@ const Track = (props) => {
     props.updateTrackOrderCallback(props.id);
   }
 
+  const onSwitchClicked = () => {
+    props.switchTrackCallback(props.id);
+  }
+
   return (
     <li className="track">
       <img className="track--albumart" alt={`album art for ${props.title}`} src={props.albumart} />
@@ -30,7 +34,7 @@ const Track = (props) => {
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
-        className="track--control track--switch"
+        className="track--control track--switch" onClick={ onSwitchClicked }
         >
         <span role="img" aria-label="switch lists">↔</span>
       </button>

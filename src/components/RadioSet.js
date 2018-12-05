@@ -15,9 +15,13 @@ class RadioSet extends Component {
     return list.filter(element => element !== song)
   }
 
+  findSong(list, id) {
+    return list.find(song => song.id === id)
+  }
+
   updateFavorite = (id) => {
     let trackList = this.state.tracks;
-    let song = trackList.find(song => song.id === id)
+    let song = this.findSong(trackList, id);
     for (const track in trackList) {
        if (trackList[track].id === song.id) {
           trackList[track].favorite = !trackList[track].favorite;
@@ -29,7 +33,7 @@ class RadioSet extends Component {
 
   updateTrackOrder = (id) => {
     let trackList = this.state.tracks;
-    const song = trackList.find(song => song.id === id)
+    const song = this.findSong(trackList, id);
     let updatedTracklist = this.removeTrack(trackList, song);
 
     if(song.id < this.state.tracks.length / 2){
@@ -41,8 +45,22 @@ class RadioSet extends Component {
     };
   };
 
+  switchTrack = (id) => {
+    let trackList = this.state.tracks;
+    const song = this.findSong(trackList, id);
+    const index = trackList.findIndex(song => song.id === id);
+    let updatedTracklist = this.removeTrack(trackList, song);
+
+    if (index < this.state.tracks.length / 2){
+      updatedTracklist.splice(this.state.tracks.length / 2, 0, song)
+      this.setState({tracks: updatedTracklist});
+    } else {
+      updatedTracklist.unshift(song);
+      this.setState({tracks: updatedTracklist});
+    };
+  };
+
   render() {
-    console.log(`Radio set for ${this.state.tracks.length} tracks`);
     const playlists = {
       morningTracks: this.state.tracks.slice(0, this.state.tracks.length / 2),
       eveningTracks: this.state.tracks.slice(this.state.tracks.length / 2, this.state.tracks.length)
@@ -56,12 +74,14 @@ class RadioSet extends Component {
             tracks={playlists.morningTracks}
             updateTrackOrderCallback={ this.updateTrackOrder }
             updateFavoriteCallback={ this.updateFavorite }
+            switchTrackCallback={ this.switchTrack }
           />
           <Playlist
             side="Evening"
             tracks={playlists.eveningTracks}
             updateTrackOrderCallback={ this.updateTrackOrder }
             updateFavoriteCallback={ this.updateFavorite }
+            switchTrackCallback={ this.switchTrack }
           />
         </section>
       </div>

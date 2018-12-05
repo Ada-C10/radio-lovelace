@@ -8,7 +8,8 @@ class Playlist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tracks: props.tracks
+      tracks: props.tracks,
+      side: props.side
     }
   }
 // Calculate total Playlist time
@@ -58,6 +59,7 @@ class Playlist extends React.Component {
   switchPlaylist = () => {
     console.log(`user clicked arrow to switch playlist`);
     let playlistSide = this.state.side;
+    console.log(this.state.side);
 
     if (playlistSide ==="Morning"){
       this.setState({side: "Evening"});

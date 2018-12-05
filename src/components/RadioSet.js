@@ -6,27 +6,38 @@ import Playlist from './Playlist';
 class RadioSet extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       tracks: this.props.tracks,
     }
   }
 
-  updateFavorite(id) {
-    let updatedTracks = this.state.tracks;
-    updatedTracks[id].favorite = !updatedTracks[id].favorite;
-    this.setState({tracks: updatedTracks});
+  removeTrack(list, song) {
+    return list.filter(element => element !== song)
+  }
+
+  updateFavorite = (id) => {
+    let trackList = this.state.tracks;
+    let song = trackList.find(song => song.id === id)
+    for (const track in trackList) {
+       if (trackList[track].id === song.id) {
+          trackList[track].favorite = !trackList[track].favorite;
+          break;
+       }
+    }
+    this.setState({tracks: trackList});
   };
 
-  updateTrackOrder(id) {
+  updateTrackOrder = (id) => {
     let trackList = this.state.tracks;
-    let song = trackList.splice(trackList[id].id, 1)[0];
-    if(trackList[id].id <= this.state.tracks.length){
-      trackList.unshift(song);
-      this.setState({tracks: trackList});
+    const song = trackList.find(song => song.id === id)
+    let updatedTracklist = this.removeTrack(trackList, song);
+
+    if(song.id < this.state.tracks.length / 2){
+      updatedTracklist.unshift(song);
+      this.setState({tracks: updatedTracklist});
     } else {
-      trackList.unshift(song);
-      this.setState({tracks: trackList});
+      updatedTracklist.splice(this.state.tracks.length / 2, 0, song)
+      this.setState({tracks: updatedTracklist});
     };
   };
 
@@ -49,6 +60,8 @@ class RadioSet extends Component {
           <Playlist
             side="Evening"
             tracks={playlists.eveningTracks}
+            updateTrackOrderCallback={ this.updateTrackOrder }
+            updateFavoriteCallback={ this.updateFavorite }
           />
         </section>
       </div>

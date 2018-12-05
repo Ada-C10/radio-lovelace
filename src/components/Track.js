@@ -33,7 +33,7 @@ class Track extends React.Component {
   }
 
   clickMoveArrow = () => {
-    console.log(`Track switched to other list`);
+    console.log(`Arrow clicked to move track to other list`);
     this.props.switchPlaylistCallback();
   }
 
@@ -58,6 +58,7 @@ class Track extends React.Component {
         </button>
         <button
           className="track--control track--switch"
+          onClick={this.clickMoveArrow}
           >
           <span role="img" aria-label="switch lists">↔</span>
         </button>

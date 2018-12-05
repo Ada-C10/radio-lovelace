@@ -13,9 +13,9 @@ const RadioSet = (props) => {
     eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
   };
 
-  // const playlistSwitch = {
-  //
-  // };
+  const playlistSwitch = {
+
+  };
 
 
   return (
@@ -29,7 +29,7 @@ const RadioSet = (props) => {
         <Playlist
           side="Evening"
           tracks={playlists.eveningTracks}
-        
+          moveTrack={this.playlistSwitch}
         />
       </section>
     </div>

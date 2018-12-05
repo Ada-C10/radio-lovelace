@@ -1,19 +1,18 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import "./styles/RadioSet.css";
-import PropTypes from 'prop-types';
 import Playlist from './Playlist';
 
-
-class RadioSet extends React.Component {
-
+class RadioSet extends React.Component{
   constructor(props) {
     super(props);
   }
 
-  render() {
+
   // playlists is an object with --
-  // morningTracks: first sliced half of tracks list &
-  // eveningTracks: second sliced half of tracks list
+  // morningTracks: first sliced half of tracks list from App &
+  // eveningTracks: second sliced half of tracks list from App
+  render() {
     const playlists = {
       morningTracks: this.props.tracks.slice(0, props.tracks.length / 2),
       eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)

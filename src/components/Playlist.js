@@ -66,7 +66,8 @@ class Playlist extends React.Component {
     const trackElements = tracks.map((track, i) => {
       // We use "spread syntax" here to pass in all the properties of
       // the variable 'track' as props. Go look it up!
-      // track has: title, artist, playtime, albumart,
+      // track has: title, artist, playtime, albumart
+      // assign key to tracktitle and trackartist bc index changes with topvote
       return (
         <Track
           key={`${track.title}${track.artist}`}

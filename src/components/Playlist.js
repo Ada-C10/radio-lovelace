@@ -69,7 +69,7 @@ class Playlist extends React.Component {
       // track has: title, artist, playtime, albumart,
       return (
         <Track
-          key={i}
+          key={`${track.title}${track.artist}`}
           index={i}
           {...track}
           isFavorite={this.trackStarClicked}

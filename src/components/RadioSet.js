@@ -3,7 +3,8 @@ import "./styles/RadioSet.css";
 
 import Playlist from './Playlist';
 
-const RadioSet = (props) => {
+// const RadioSet = (props) => {
+class RadioSet extends React.Component {
   console.log(`Radio set for ${props.tracks.length} tracks`);
   // playlists is an object with --
   // morningTracks: first sliced half of tracks list &
@@ -36,4 +37,5 @@ const RadioSet = (props) => {
   );
 };
 
+}
 export default RadioSet;

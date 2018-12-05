@@ -19,21 +19,18 @@ class Track extends Component {
           side: props.side,
           listOrder: this.id
         };
-      console.log(this)
       // console.log()
   }
 
 
 
   onFavoriteChange() {
-    console.log(this)
     this.setState({favorite: !this.state.favorite});
   }
 
   onUpClicked = () => {
-    this.setState({id: 0});
+    this.setState({listOrder: 0});
     this.props.sortTracksCallback(this)
-    console.log(this)
   }
 
   getState(){

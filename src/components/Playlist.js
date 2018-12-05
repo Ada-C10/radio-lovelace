@@ -35,6 +35,7 @@ class Playlist extends React.Component {
     return `${hours}:${minutes}:${seconds}`;
   }
 
+
 // Change favorite to act on id not index?
   trackStarClicked = (trackIndex) => {
     console.log(`track with index ${trackIndex} star clicked - Playlist callback`);
@@ -44,17 +45,25 @@ class Playlist extends React.Component {
     console.log(this.state.tracks);
   }
 
+
   sendTrackToTop = (trackIndex) => {
     console.log(`track with index ${trackIndex} upvoted - Playlist callback`);
     let updatedTrackList = this.state.tracks;
     updatedTrackList.unshift(updatedTrackList.splice(trackIndex, 1)[0]);
-    // for (let track in updatedTrackList) {
-    //   if (track["id"]===trackId) {
-    //     console.log(`found ${track.title}`)
-    //   }
-    // }
-
     this.setState({tracks: updatedTrackList});
+  }
+
+
+// Move Track on arrow click from morning to evening or evening to morning
+  switchPlaylist = () => {
+    console.log(`user clicked arrow to switch playlist`);
+    let playlistSide = this.state.side;
+
+    if (playlistSide ==="Morning"){
+      this.setState({side: "Evening"});
+    } else if (playlistSide ==="Evening") {
+      this.setState({side: "Morning"});
+    }
   }
 
   // Must specify morning or evening?
@@ -75,6 +84,7 @@ class Playlist extends React.Component {
           {...track}
           isFavorite={this.trackStarClicked}
           topvote={this.sendTrackToTop}
+          switchPlaylistCallback={this.switchPlaylist}
         />
       );
     });

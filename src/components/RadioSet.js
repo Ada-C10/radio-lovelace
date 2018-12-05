@@ -15,10 +15,12 @@ const RadioSet = (props) => {
         <Playlist
           side="Morning"
           tracks={playlists.morningTracks}
+          topTrackCallback = {props.topTrackCallback}
         />
         <Playlist
           side="Evening"
           tracks={playlists.eveningTracks}
+          topTrackCallback = {props.topTrackCallback}
         />
       </section>
     </div>

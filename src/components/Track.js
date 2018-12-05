@@ -32,6 +32,11 @@ class Track extends React.Component {
     this.props.topvote(this.props.index);
   }
 
+  clickMoveArrow = () => {
+    console.log(`Track switched to other list`);
+    this.props.switchPlaylistCallback();
+  }
+
   render() {
     return (
       <li className="track">

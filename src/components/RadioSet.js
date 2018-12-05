@@ -1,13 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+
 import "./styles/RadioSet.css";
 import Playlist from './Playlist';
 
-class RadioSet extends React.Component{
+class RadioSet extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   // playlists is an object with --
   // morningTracks: first sliced half of tracks list from App &

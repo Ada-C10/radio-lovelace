@@ -27,6 +27,10 @@ class Playlist extends Component {
 
   }
 
+  switchTrack = (index) => {
+    this.props.switchTrackCallback(index, this.props.side);
+  }
+
   calculatePlayTime = (tracks) => {
 
     let minutes = 0;
@@ -63,6 +67,7 @@ class Playlist extends Component {
           key={i}
           index={i}
           sendToTopCallback={this.reshuffleSongs}
+          switchTrackCallback={this.switchTrack}
           {...track}
           />
       );

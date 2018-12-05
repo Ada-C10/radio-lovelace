@@ -12,7 +12,7 @@ class Track extends Component {
     super(props);
     this.state = {
       favorite: false,
-      index: this.props.index
+      index: this.props.index,
     }
   }
 
@@ -24,6 +24,10 @@ class Track extends Component {
 
   sendToTop = () => {
     this.props.sendToTopCallback(this.props.index);
+  }
+
+  switchTrack = () => {
+    this.props.switchTrackCallback(this.props.index);
   }
 
   render() {
@@ -50,6 +54,7 @@ class Track extends Component {
         </button>
         <button
           className="track--control track--switch"
+          onClick={this.switchTrack}
           >
           <span role="img" aria-label="switch lists">↔</span>
         </button>

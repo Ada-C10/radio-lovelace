@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './styles/Playlist.css';
 
@@ -30,11 +30,11 @@ const Playlist = (props) => {
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);
   const trackElements = tracks.map((track, i) => {
-    // We use "spread syntax" here to pass in all the properties of
-    // the variable 'track' as props. Go look it up!
     return (
       <Track
         key={i}
+        updateTrackOrderCallback = { props.updateTrackOrderCallback }
+        updateFavoriteCallback = { props.updateFavoriteCallback }
         {...track}
       />
     );

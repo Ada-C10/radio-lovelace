@@ -18,7 +18,8 @@ class RadioSet extends React.Component {
     };
 
     const playlistSwitch = {
-
+      // Track was deleted in Playlist.
+      // Now add to top of other playlist
     };
 
 

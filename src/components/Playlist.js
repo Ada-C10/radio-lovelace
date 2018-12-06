@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import './styles/Playlist.css';
 
 import Track from './Track';
@@ -58,10 +58,9 @@ class Playlist extends React.Component {
 // Move Track on arrow click from morning to evening or evening to morning
 
   switchPlaylist = (trackIndex) => {
-    let updatedPlaylist = this.state.tracks;
-    this.props.moveTrack(trackIndex);
-    updatedPlaylist.splice(trackIndex, 1);
+    this.props.moveTrack(trackIndex, this.props.side);
     console.log(this.state.tracks);
+    console.log(this);
   }
   // switchPlaylist = () => {
   //   console.log(`user clicked arrow to switch playlist`);

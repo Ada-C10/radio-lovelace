@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import "./styles/Track.css";
 
@@ -34,6 +34,7 @@ class Track extends React.Component {
 
   clickMoveArrow = () => {
     console.log(`Arrow clicked to move track to other list`);
+    console.log(`clickMoveArrow props: ${this.props}`);
     this.props.switchPlaylistCallback(this.props.index);
     console.log(this);
   }

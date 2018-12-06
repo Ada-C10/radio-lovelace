@@ -20,6 +20,10 @@ class Track extends Component {
     this.props.sortTracksCallback(this)
   }
 
+  onSwitchSidesClick = () => {
+    this.props.switchPlayListCallback(this)
+  }
+
   render(props) {
     // Here we use destructuring to extract the props into separate variables
     // See https://wesbos.com/destructuring-objects/
@@ -44,7 +48,7 @@ class Track extends Component {
           <button
             className="track--control track--switch"
             >
-            <span role="img" aria-label="switch lists">↔</span>
+            <span role="img" aria-label="switch lists" onClick={ this.onSwitchSidesClick }>↔</span>
           </button>
         </li>
       );

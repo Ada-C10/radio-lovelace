@@ -39,8 +39,6 @@ class Playlist extends Component {
   }
 
   sortTracks = (track) => {
-    console.log("evening")
-    console.log(this.state.playList)
       for (let song of this.state.playList) {
         if (track.props.id === song.id){
           console.log("found track", song.id)

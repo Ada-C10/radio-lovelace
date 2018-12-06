@@ -10,23 +10,31 @@ class RadioSet extends Component {
     super(props);
     console.log(`Radio set for ${props.tracks.length} tracks`);
 
+    this.state = {
+        morningTracks: this.props.tracks.slice(0, this.props.tracks.length / 2),
+        eveningTracks: this.props.tracks.slice(this.props.tracks.length / 2, this.props.tracks.length)
+      };
+  }
+
+  switchPlayList = (track) => {
+    console.log(track)
   }
 
   render() {
 
-  const morningTracks = this.props.tracks.slice(0, this.props.tracks.length / 2);
-  const eveningTracks = this.props.tracks.slice(this.props.tracks.length / 2, this.props.tracks.length)
 
       return (
         <div className="radio-set">
           <section className="radio-set--playlist-container">
             <Playlist
               side="Morning"
-              tracks={morningTracks}
+              tracks={this.state.morningTracks}
+              switchPlayListCallback = {this.switchPlayList}
             />
             <Playlist
               side="Evening"
-              tracks={eveningTracks}
+              tracks={this.state.eveningTracks}
+              switchPlayListCallback = {this.switchPlayList}
             />
           </section>
         </div>

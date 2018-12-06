@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   topTrack = (trackIndex, side) => {
-    let updatedSongList = [...this.state[side]];
+    let updatedSongList = this.state[side];
     console.log(this.state)
     console.log(side)
 
@@ -60,9 +60,11 @@ class App extends Component {
       updatedSongData.Morning.unshift(track)
     }
 
-    delete updatedSongData[side][trackIndex]
+    updatedSongData[side].splice(trackIndex, 1);
 
     this.setState({updatedSongData})
+
+    console.log(this.state)
   }
 
   render() {

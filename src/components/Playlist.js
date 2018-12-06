@@ -12,8 +12,8 @@ class Playlist extends React.Component {
       // side: props.side
     }
   }
+
 // Calculate total Playlist time
-// Must specify playlist.morningTracks or playlist.eveningTracks?
   calculatePlayTime = (tracks) => {
     let minutes = 0;
     let seconds = 0;
@@ -37,7 +37,6 @@ class Playlist extends React.Component {
   }
 
 
-// Change favorite to act on id not index?
   trackStarClicked = (trackIndex) => {
     console.log(`track with index ${trackIndex} star clicked - Playlist callback`);
     let updatedFavoriteData = this.state.tracks;
@@ -56,38 +55,12 @@ class Playlist extends React.Component {
 
 
 // Move Track on arrow click from morning to evening or evening to morning
-
   switchPlaylist = (trackIndex) => {
     this.props.moveTrack(trackIndex, this.props.side);
     console.log(this.state.tracks);
     console.log(this);
   }
-  // switchPlaylist = () => {
-  //   console.log(`user clicked arrow to switch playlist`);
-  //   let playlistSide = this.props.side;
-  //   console.log(this.props);
-  //   console.log(this);
-    // if (playlistSide ==="Morning"){
-    //   this.setState({side: "Evening"});
-    // } else if (playlistSide ==="Evening") {
-    //   this.setState({side: "Morning"});
-    // }
-  // }
 
-  // switchPlaylist = (trackIndex) => {
-  //   console.log(`user clicked arrow to switch playlist`);
-  //   let playlistSide = this.props.side;
-  //   console.log(this.props.tracks);
-  //
-  //   if (playlistSide ==="Morning"){
-  //     this.setState({side: "Evening"});
-  //   } else if (playlistSide ==="Evening") {
-  //     this.setState({side: "Morning"});
-  //   }
-  // }
-
-  // Must specify morning or evening?
-  // const Playlist = (props) => {
   render() {
     const tracks = this.state.tracks;
     const trackCount = tracks.length;
@@ -95,6 +68,7 @@ class Playlist extends React.Component {
     const trackElements = tracks.map((track, i) => {
       // We use "spread syntax" here to pass in all the properties of
       // the variable 'track' as props. Go look it up!
+      
       // track has: title, artist, playtime, albumart
       // assign key to tracktitle and trackartist bc index changes with topvote
       return (

@@ -13,16 +13,14 @@ class RadioSet extends React.Component {
       }
     }
   }
-
   // playlists is an object with --
   // morningTracks: first sliced half of tracks list from App &
   // eveningTracks: second sliced half of tracks list from App
 
+  // Move track from one playlist to top of other
   playlistSwitch = (trackIndex, side) => {
-    // Move track from one playlist to top of other
     console.log(`radioset event handler`);
     let radioSetPlaylist = this.state.playlists;
-    console.log(this.state.playlists);
 
     if (side === "Morning") {
       radioSetPlaylist.eveningTracks.unshift(radioSetPlaylist.morningTracks.splice(trackIndex, 1)[0]);
@@ -37,13 +35,9 @@ class RadioSet extends React.Component {
 
   render() {
 
-
-
-
     return (
       <div className="radio-set">
         <section className="radio-set--playlist-container">
-          {/* When change song, must change side prop and list in const playlists? No. Track does not have side. Playlist does. For song, only move between playlists.morningTracks and playlists.eveningTracks*/}
           <Playlist
             side="Morning"
             tracks={this.state.playlists.morningTracks}

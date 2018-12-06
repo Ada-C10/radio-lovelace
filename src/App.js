@@ -15,37 +15,34 @@ class App extends Component {
     super(props);
 
     this.state = {
-      songData
+      Morning: songData.slice(0, songData.length / 2),
+      Evening: songData.slice(songData.length/2, songData.length)
     }
   }
 
   topTrack = (trackIndex, side) => {
-    let updatedSongData = this.state.songData;
-    console.log(trackIndex)
+    let updatedSongList = [...this.state[side]];
+    console.log(this.state)
     console.log(side)
-    let currentTrack = '';
-    let i = '';
 
-    if (side === 'Morning') {
-      currentTrack = updatedSongData[0];
-      updatedSongData[0] = updatedSongData[trackIndex];
-      i = 1;
-    } else {
-      trackIndex += 43;
-      currentTrack = updatedSongData[43];
-      updatedSongData[43] = updatedSongData[trackIndex];
-      i = 44;
-    }
+    let currentTrack = updatedSongList[0];
+    updatedSongList[0] = updatedSongList[trackIndex];
+    let i = 1;
 
     while (i <= trackIndex) {
-      let nextTrack = updatedSongData[i];
-      updatedSongData[i] = currentTrack;
+      let nextTrack = updatedSongList[i];
+      updatedSongList[i] = currentTrack;
       currentTrack = nextTrack;
       i++
     }
 
-    this.setState({songData: updatedSongData});
-    console.log(songData);
+    if (side === 'Morning') {
+      this.setState({Morning: updatedSongList})
+    } else {
+      this.setState({Evening: updatedSongList})
+    }
+
+    console.log(this.state);
   }
 
   render() {
@@ -56,7 +53,7 @@ class App extends Component {
         </header>
         <main className="main">
           <RadioSet
-            tracks={songData}
+            tracks={this.state}
             topTrackCallback = {this.topTrack}
           />
         </main>

@@ -6,8 +6,8 @@ import Playlist from './Playlist';
 const RadioSet = (props) => {
   console.log(`Radio set for ${props.tracks.length} tracks`);
   const playlists = {
-    morningTracks: props.tracks.slice(0, props.tracks.length / 2),
-    eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
+    morningTracks: props.tracks.Morning,
+    eveningTracks: props.tracks.Evening
   };
   return (
     <div className="radio-set">

@@ -7,6 +7,7 @@ import songData from './data/tracks.json';
 
 songData.forEach((song, i) => {
   song.id = i;
+  song.favorite = false;
 });
 
 class App extends Component {
@@ -53,11 +54,7 @@ class App extends Component {
   }
 
   render() {
-    songData.forEach((song, i) => {
-      song.id = i;
-    });
 
-    console.log(this.state.allSongs)
     return (
       <div className="App">
         <header>

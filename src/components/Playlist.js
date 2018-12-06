@@ -7,20 +7,11 @@ import Track from './Track';
 
 class Playlist extends Component {
 
-  constructor(props) {
-    super(props);
-
-      this.state = {
-          playList: props.tracks
-        };
-  }
-
 
   calculatePlayTime = (tracks) => {
       let minutes = 0;
       let seconds = 0;
-      console.log(tracks[0])
-      this.state.playList.forEach((track) => {
+      this.props.tracks.forEach((track) => {
         const times = track.playtime.split(':');
         minutes += parseInt(times[0]);
         seconds += parseInt(times[1]);
@@ -38,35 +29,11 @@ class Playlist extends Component {
     return `${hours}:${minutes}:${seconds}`;
   }
 
-  sortTracks = (track) => {
-      for (let song of this.state.playList) {
-        if (track.props.id === song.id){
-          console.log("found track", song.id)
-          let trackArray = [...this.state.playList]
-          let removedTrack = trackArray.splice(song.id, 1)
-          trackArray.unshift(removedTrack[0])
-          this.setState({playList: trackArray}, () => {
-            console.log(this.state.playList)
-          });
-        } else if (track.props.id + 43 === song.id) {
-          console.log("found track", song.id)
-          let trackArray = [...this.state.playList]
-          let removedTrack = trackArray.splice(song.id-43, 1)
-          console.log(removedTrack)
-          trackArray.unshift(removedTrack[0])
-          this.setState({playList: trackArray}, () => {
-            console.log(this.state.playList)
-          });
-        }
-      }
-
-  }
 
 render() {
-  console.log(this.state.playList, "HERE")
-  const playtime = this.calculatePlayTime(this.state.playList)
+  const playtime = this.calculatePlayTime(this.props.tracks)
 
-  const trackList = this.state.playList
+  const trackList = this.props.tracks
         .map((track, i)  => {
             return (
               <Track
@@ -74,7 +41,8 @@ render() {
                 {...track}
                 id={i}
                 side={this.props.side}
-                sortTracksCallback = {this.sortTracks}
+                switchPlayListCallback = {this.props.switchPlayListCallback}
+                sortTracksCallback = {this.props.sortTracksCallback}
               />
             )
         })

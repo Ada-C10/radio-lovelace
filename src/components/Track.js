@@ -8,26 +8,30 @@ class Track extends Component {
 
   constructor(props) {
     super(props);
+
       this.state = {
-          favorite: false,
-          side: props.side,
+          favorite: props.favorite
         };
   }
-
 
 
   onUpClicked = () => {
     this.props.sortTracksCallback(this)
   }
 
-  onSwitchSidesClick = () => {
-    this.props.switchPlayListCallback(this)
+  onSwitchSidesClicked = () => {
+    this.props.switchPlayListCallback(this, this.state.favorite)
+  }
+
+  onFavStar = () => {
+    if (this.state.favorite === false) {
+      this.setState({favorite: true})
+    } else {
+      this.setState({favorite: false})
+    }
   }
 
   render(props) {
-    // Here we use destructuring to extract the props into separate variables
-    // See https://wesbos.com/destructuring-objects/
-      // onChange={this.onChangeFavorite}
       return (
         <li className="track">
           <img className="track--albumart" alt={`album art for ${this.props.title}`} src={this.props.albumart} />
@@ -35,8 +39,8 @@ class Track extends Component {
           <input
             type="checkbox"
             className="track--favorite"
-            checked={this.props.favorite}
-            defaultChecked={!this.state.favorite}
+            checked={!this.state.favorite}
+            onChange={this.onFavStar}
           />
           <p className="track--artist">{this.props.artist}</p>
           <p className="track--playtime">{this.props.playtime}</p>
@@ -48,7 +52,7 @@ class Track extends Component {
           <button
             className="track--control track--switch"
             >
-            <span role="img" aria-label="switch lists" onClick={ this.onSwitchSidesClick }>↔</span>
+            <span role="img" aria-label="switch lists" onClick={ this.onSwitchSidesClicked }>↔</span>
           </button>
         </li>
       );

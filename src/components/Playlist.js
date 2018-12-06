@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react';
+
 import PropTypes from 'prop-types'
 import './styles/Playlist.css';
 
@@ -25,32 +26,51 @@ const calculatePlayTime = (tracks) => {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-const Playlist = (props) => {
-  const tracks = props.tracks;
-  const trackCount = tracks.length;
-  const playtime = calculatePlayTime(tracks);
-  const trackElements = tracks.map((track, i) => {
-    // We use "spread syntax" here to pass in all the properties of
-    // the variable 'track' as props. Go look it up!
-    return (
-      <Track
-        key={`${track.title}${track.artist}`}
-        {...track}
-      />
-    );
-  });
+class Playlist extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tracks: this.props.tracks,
+    };
+  }
 
-  return (
-    <div className="playlist">
-      <h2>{props.side} Playlist</h2>
+  moveToTop = (index) => {
+    const updatedTracks = this.state.tracks
+    updatedTracks.unshift(updatedTracks[index])
+    updatedTracks.splice(index + 1, 1);
+    this.setState({ tracks: updatedTracks });
+  }
+
+  render() {
+    const tracks = this.state.tracks;
+    const trackCount = tracks.length;
+    const playtime = calculatePlayTime(tracks);
+    const trackElements = tracks.map((track, i) => {
+      // We use "spread syntax" here to pass in all the properties of
+      // the variable 'track' as props. Go look it up!
+
+      return (
+        <Track
+        key={`${track.title}${track.artist}`}
+        moveToTopCallback={this.moveToTop}
+        index={i}
+        {...track}
+        />
+      );
+    });
+
+    return (
+      <div className="playlist">
+      <h2>{this.props.side} Playlist</h2>
       <p>
-        {trackCount} tracks - {playtime}
+      {trackCount} tracks - {playtime}
       </p>
       <ul className="playlist--track-list">
-        {trackElements}
+      {trackElements}
       </ul>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 Playlist.propTypes = {

@@ -58,9 +58,7 @@ class Playlist extends React.Component {
 // Move Track on arrow click from morning to evening or evening to morning
 
   switchPlaylist = (trackIndex) => {
-    let updatedPlaylist = this.state.tracks;
     this.props.moveTrack(trackIndex, this.props.side);
-    updatedPlaylist.splice(trackIndex, 1);
     console.log(this.state.tracks);
     console.log(this);
   }

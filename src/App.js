@@ -45,6 +45,26 @@ class App extends Component {
     console.log(this.state);
   }
 
+  switchPlaylist = (trackIndex, side) => {
+    console.log(side);
+    console.log(trackIndex);
+
+    let updatedSongData = this.state;
+    const track = updatedSongData[side][trackIndex];
+
+    console.log(track);
+
+    if (side === 'Morning') {
+      updatedSongData.Evening.unshift(track)
+    } else {
+      updatedSongData.Morning.unshift(track)
+    }
+
+    delete updatedSongData[side][trackIndex]
+
+    this.setState({updatedSongData})
+  }
+
   render() {
     return (
       <div className="App">
@@ -55,6 +75,7 @@ class App extends Component {
           <RadioSet
             tracks={this.state}
             topTrackCallback = {this.topTrack}
+            switchPlaylistCallback = {this.switchPlaylist}
           />
         </main>
       </div>

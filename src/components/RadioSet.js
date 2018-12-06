@@ -18,10 +18,21 @@ class RadioSet extends React.Component {
   // morningTracks: first sliced half of tracks list from App &
   // eveningTracks: second sliced half of tracks list from App
 
-playlistSwitch = () => {
+  playlistSwitch = (trackIndex, side) => {
     // Track was deleted in Playlist.
     // Now add to top of other playlist
-    console.log(`radioset event handler`)
+    console.log(`radioset event handler`);
+    let radioSetPlaylist = this.state.playlists;
+    console.log(this.state.playlists);
+    // if (radioSetPlaylist.morningTracks) has
+    // if (side === "Morning") {
+    //   this.state.playlists[trackIndex]
+    // }
+
+
+    this.setState({
+      playlists: radioSetPlaylist
+    })
   };
 
   render() {

@@ -59,9 +59,10 @@ class Playlist extends React.Component {
 
   switchPlaylist = (trackIndex) => {
     let updatedPlaylist = this.state.tracks;
-    this.props.moveTrack(trackIndex);
+    this.props.moveTrack(trackIndex, this.props.side);
     updatedPlaylist.splice(trackIndex, 1);
     console.log(this.state.tracks);
+    console.log(this);
   }
   // switchPlaylist = () => {
   //   console.log(`user clicked arrow to switch playlist`);

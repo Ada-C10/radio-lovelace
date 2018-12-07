@@ -41,6 +41,10 @@ class Playlist extends Component {
     this.setState({ tracks: updatedTracks });
   }
 
+  switchListsCallback = (index) => {
+    this.props.switchListsProp(index, this.props.side);
+  }
+
   render() {
     const tracks = this.state.tracks;
     const trackCount = tracks.length;
@@ -53,6 +57,7 @@ class Playlist extends Component {
         <Track
         key={`${track.title}${track.artist}`}
         moveToTopCallback={this.moveToTop}
+        switchListsPlaylistCallback={this.switchListsCallback}
         index={i}
         {...track}
         />

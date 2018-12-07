@@ -33,6 +33,11 @@ class Playlist extends Component {
       tracks: this.props.tracks,
     };
   }
+  markFavorite  = (index) => {
+    const updatedTracks = this.state.tracks
+    updatedTracks[index].favorite = !updatedTracks[index].favorite
+    this.setState({ tracks: updatedTracks });
+  }
 
   moveToTop = (index) => {
     const updatedTracks = this.state.tracks
@@ -56,6 +61,7 @@ class Playlist extends Component {
       return (
         <Track
         key={`${track.title}${track.artist}`}
+        markFavoriteCallback={this.markFavorite}
         moveToTopCallback={this.moveToTop}
         switchListsPlaylistCallback={this.switchListsCallback}
         index={i}

@@ -5,13 +5,17 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-const Track = ({title, artist, playtime, albumart, favorite, index, moveToTopCallback, switchListsPlaylistCallback}) => {
+const Track = ({title, artist, playtime, albumart, favorite, index, markFavoriteCallback, moveToTopCallback, switchListsPlaylistCallback}) => {
 
-  const moveTop = () =>{
+  const onChangeMarkFavorite = () =>{
+    markFavoriteCallback(index);
+  }
+
+  const onClickMoveTop = () =>{
     moveToTopCallback(index);
   }
 
-  const switchLists = () =>{
+  const onClickSwitchLists = () =>{
     switchListsPlaylistCallback(index);
   }
 
@@ -22,19 +26,20 @@ const Track = ({title, artist, playtime, albumart, favorite, index, moveToTopCal
     <input
     type="checkbox"
     className="track--favorite"
-    defaultChecked={!favorite}
+    checked={!favorite}
+    onChange={ onChangeMarkFavorite }
     />
     <p className="track--artist">{artist}</p>
     <p className="track--playtime">{playtime}</p>
     <button
     className="track--control track--to-top"
-    onClick={ moveTop }
+    onClick={ onClickMoveTop }
     >
     <span role="img" aria-label="send to top">🔝</span>
     </button>
     <button
     className="track--control track--switch"
-    onClick={ switchLists }
+    onClick={ onClickSwitchLists }
     >
     <span role="img" aria-label="switch lists">↔</span>
     </button>

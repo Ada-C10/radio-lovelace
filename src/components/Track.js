@@ -4,30 +4,31 @@ import PropTypes from 'prop-types'
 import "./styles/Track.css";
 
 const Track = (props) => {
+  const {id, title, albumart, favorite, artist, playtime } = props;
   const toggleFavorite = () => {
-    props.updateFavoriteCallback(props.id);
+    props.updateFavoriteCallback(id);
   }
 
   const onTopClicked = () => {
-    props.updateTrackOrderCallback(props.id);
+    props.updateTrackOrderCallback(id);
   }
 
   const onSwitchClicked = () => {
-    props.switchTrackCallback(props.id);
+    props.switchTrackCallback(id);
   }
 
   return (
     <li className="track">
-      <img className="track--albumart" alt={`album art for ${props.title}`} src={props.albumart} />
-      <h3 className="track--title">{props.title}</h3>
+      <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
+      <h3 className="track--title">{title}</h3>
       <input
         type="checkbox"
         className="track--favorite"
-        checked={!props.favorite}
+        checked={!favorite}
         onChange={ toggleFavorite }
       />
-    <p className="track--artist">{props.artist}</p>
-      <p className="track--playtime">{props.playtime}</p>
+    <p className="track--artist">{artist}</p>
+      <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top" onClick={ onTopClicked }
         >

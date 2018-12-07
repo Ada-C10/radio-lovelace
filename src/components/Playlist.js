@@ -39,6 +39,7 @@ const Playlist = (props) => {
         side={props.side}
         topTrackCallback = {props.topTrackCallback}
         switchPlaylistCallback = {props.switchPlaylistCallback}
+        clickFavoriteCallback = {props.clickFavoriteCallback}
         {...track}
       />
     );

@@ -11,13 +11,21 @@ songData.forEach((song, i) => {
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       Morning: songData.slice(0, songData.length / 2),
       Evening: songData.slice(songData.length/2, songData.length)
     }
+  }
+
+  makeFavorite = (trackIndex, side) => {
+    let updatedSongData = this.state;
+
+    updatedSongData[side][trackIndex].favorite = true;
+
+    this.setState({updatedSongData})
   }
 
   topTrack = (trackIndex, side) => {
@@ -76,6 +84,7 @@ class App extends Component {
         <main className="main">
           <RadioSet
             tracks={this.state}
+            clickFavoriteCallback = {this.makeFavorite}
             topTrackCallback = {this.topTrack}
             switchPlaylistCallback = {this.switchPlaylist}
           />

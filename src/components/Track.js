@@ -10,8 +10,12 @@ class Track extends React.Component {
     super(props);
   }
 
+  onFavoriteChange = (event) => {
+    this.props.markFavoriteCallback(this.props.id);
+  }
+
   render () {
-    const {title, artist, playtime, albumart, favorite} = this.props;
+    const {id, title, artist, playtime, albumart, favorite} = this.props;
 
     return (
       <li className="track">
@@ -21,6 +25,7 @@ class Track extends React.Component {
           type="checkbox"
           className="track--favorite"
           checked={!favorite}
+          onChange={this.onFavoriteChange}
         />
         <p className="track--artist">{artist}</p>
         <p className="track--playtime">{playtime}</p>

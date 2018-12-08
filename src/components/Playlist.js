@@ -36,6 +36,7 @@ const Playlist = (props) => {
       <Track
         key={`${track.title}${track.artist}`}
         {...track}
+        markFavoriteCallback={props.markFavoriteCallback}
       />
     );
   });
@@ -48,6 +49,7 @@ const Playlist = (props) => {
       </p>
       <ul className="playlist--track-list">
         {trackElements}
+
       </ul>
     </div>
   );

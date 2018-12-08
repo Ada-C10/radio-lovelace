@@ -7,16 +7,25 @@ import songData from './data/tracks.json';
 
 songData.forEach((song, i) => {
   song.id = i;
-  song.favorite = false; // favorite prop is now set
+  song.favorite = false;
 });
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state.songData = songData
+    this.state = {
+      songData: songData
+    }
   }
-  
+
+  markFavorite = (songIndex) => {
+    let updatedSongData = this.state.songData;
+    updatedSongData[songIndex].favorite = true;
+
+    this.setState({songData: updatedSongData});
+  }
+
   render() {
     return (
       <div className="App">
@@ -24,7 +33,8 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} />
+          <RadioSet tracks={this.state.songData}
+          markFavoriteCallback={this.markFavorite} />
         </main>
       </div>
     );

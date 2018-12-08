@@ -38,6 +38,7 @@ const Playlist = (props) => {
         {...track}
         markFavoriteCallback={props.markFavoriteCallback}
         toTopCallback={props.toTopCallback}
+        switchPlaylistsCallback={props.switchPlaylistsCallback}
       />
     );
   });

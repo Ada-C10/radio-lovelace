@@ -36,11 +36,23 @@ class App extends Component {
       updatedSongData.unshift(songData[songIndex]);
     } else {
       updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
-      // updatedSongData.unshift(songData[songIndex]);
-      // updatedSongData.splice(songIndex, 1);
       updatedSongData.splice(43, 0, songData[songIndex]);
-      // updatedSongData.unshift(updatedSongData.splice(songIndex, 1)[43]);
+    }
 
+    this.setState({songData: updatedSongData})
+  }
+
+  switchPlaylists = (songIndex) => {
+    let updatedSongData = this.state.songData;
+
+    // if songindex is between second value, then move it to top of second array
+    // updatedSongData.unshift(updatedSongData.splice(songIndex, 1)[0]);
+    if (songIndex < 42) {
+      updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
+      updatedSongData.splice(43, 0, songData[songIndex]);
+    } else {
+      updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
+      updatedSongData.unshift(songData[songIndex]);
     }
 
     this.setState({songData: updatedSongData})
@@ -55,7 +67,8 @@ class App extends Component {
         <main className="main">
           <RadioSet tracks={this.state.songData}
           markFavoriteCallback={this.markFavorite}
-          toTopCallback={this.sendToTop} />
+          toTopCallback={this.sendToTop}
+          switchPlaylistsCallback={this.switchPlaylists} />
         </main>
       </div>
     );

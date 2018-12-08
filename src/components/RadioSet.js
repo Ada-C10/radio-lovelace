@@ -28,7 +28,6 @@ class RadioSet extends React.Component {
   sendToTop = (songId) => {
     const newTracks = this.state.tracks;
     const songIndex = this.findSongIndex(newTracks, songId);
-    // const playlistLength = this.state.tracks.length / 2;
     const songToMove = newTracks.splice(songIndex, 1)[0];
 
     if (songIndex < this.state.morningPlaylistLength) {
@@ -43,7 +42,6 @@ class RadioSet extends React.Component {
   switchLists = (songId) => {
     const newTracks = this.state.tracks;
     const songIndex = this.findSongIndex(newTracks, songId);
-    // const playlistLength = this.state.tracks.length / 2;
     const songToMove = newTracks.splice(songIndex, 1)[0];
 
     if (songIndex < this.state.morningPlaylistLength) { // move to evening

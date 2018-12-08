@@ -37,6 +37,7 @@ const Playlist = (props) => {
         key={i}
         markFavoriteCallback={props.markFavoriteCallback}
         toTopCallback={props.toTopCallback}
+        switchListsCallback={props.switchListsCallback}
         {...track}
       />
     );
@@ -58,6 +59,9 @@ const Playlist = (props) => {
 Playlist.propTypes = {
   tracks: PropTypes.array,
   side: PropTypes.string,
+  markFavoriteCallback: PropTypes.func,
+  toTopCallback: PropTypes.func,
+  switchListsCallback: PropTypes.func
 }
 
 export default Playlist;

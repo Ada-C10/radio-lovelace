@@ -8,6 +8,7 @@ import songData from './data/tracks.json';
 songData.forEach((song, i) => {
   song.id = i;
   song.favorite = false;
+  song.index = i;
 });
 
 class App extends Component {
@@ -19,9 +20,9 @@ class App extends Component {
     }
   }
 
-  markFavorite = (songIndex) => {
+  markFavorite = (songID) => {
     let updatedSongData = this.state.songData;
-    updatedSongData[songIndex].favorite = true;
+    updatedSongData[songID].favorite = true;
 
     this.setState({songData: updatedSongData});
   }
@@ -34,9 +35,11 @@ class App extends Component {
     if (songIndex < 42) {
       updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
       updatedSongData.unshift(songData[songIndex]);
+      // updatedSongData[songIndex].index = 0
     } else {
       updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
       updatedSongData.splice(43, 0, songData[songIndex]);
+      // updatedSongData[songIndex].index = 43
     }
 
     this.setState({songData: updatedSongData})
@@ -45,14 +48,15 @@ class App extends Component {
   switchPlaylists = (songIndex) => {
     let updatedSongData = this.state.songData;
 
-    // if songindex is between second value, then move it to top of second array
-    // updatedSongData.unshift(updatedSongData.splice(songIndex, 1)[0]);
     if (songIndex < 42) {
       updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
       updatedSongData.splice(43, 0, songData[songIndex]);
+      // updatedSongData[songIndex].index = 43
     } else {
       updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
       updatedSongData.unshift(songData[songIndex]);
+      // updatedSongData[songIndex].index = 0
+
     }
 
     this.setState({songData: updatedSongData})

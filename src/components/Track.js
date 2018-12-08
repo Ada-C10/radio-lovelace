@@ -5,7 +5,7 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-const Track = ({id, title, artist, playtime, albumart, favorite,
+const Track = ({id, index, title, artist, playtime, albumart, favorite,
   markFavoriteCallback, toTopCallback, switchPlaylistsCallback}) => {
 
   const onFavoriteChange = () => {
@@ -14,11 +14,11 @@ const Track = ({id, title, artist, playtime, albumart, favorite,
   }
 
   const onClickToTop = () => {
-    toTopCallback(id)
+    toTopCallback(index)
   }
 
   const onClickToSwitch = () => {
-    switchPlaylistsCallback(id);
+    switchPlaylistsCallback(index);
   }
 
   return (

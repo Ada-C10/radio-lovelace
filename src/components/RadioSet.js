@@ -19,7 +19,7 @@ class RadioSet extends React.Component {
   markFavorite = (songId) => {
     const newTracks = this.state.tracks;
     const songIndex = this.findSongIndex(newTracks, songId);
-    newTracks[songIndex].favorite = true;
+    newTracks[songIndex].favorite = !newTracks[songIndex].favorite;
 
     this.setState({tracks: newTracks});
   };

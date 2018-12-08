@@ -48,6 +48,9 @@ Track.propTypes = {
   playtime: PropTypes.string,
   albumart: PropTypes.string,
   favorite: PropTypes.bool,
+  id: PropTypes.number,
+  markFavoriteCallback: PropTypes.func,
+  toTopCallback: PropTypes.func
 }
 
 export default Track;

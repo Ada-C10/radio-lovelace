@@ -5,10 +5,14 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-const Track = ({id, title, artist, playtime, albumart, favorite, markFavoriteCallback}) => {
+const Track = ({id, title, artist, playtime, albumart, favorite, markFavoriteCallback, toTopCallback}) => {
 
   const onFavoriteChange = () => {
     markFavoriteCallback(id);
+  }
+
+  const onToTop = () => {
+    toTopCallback(id);
   }
 
   return (
@@ -25,6 +29,7 @@ const Track = ({id, title, artist, playtime, albumart, favorite, markFavoriteCal
       <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top"
+        onClick={onToTop}
         >
         <span role="img" aria-label="send to top">🔝</span>
       </button>

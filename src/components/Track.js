@@ -19,7 +19,7 @@ const Track = (props) => {
   }
 
   const onToTop = () => {
-    props.listToTopCallback(props.index);
+    props.listToTopCallback(props.index, props.side);
   }
 
   return (
@@ -56,6 +56,7 @@ Track.propTypes = {
   playtime: PropTypes.string,
   albumart: PropTypes.string,
   favorite: PropTypes.bool,
+  side: PropTypes.string,
 }
 
 export default Track;

@@ -14,7 +14,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      songData: songData
+      songData: songData,
+      morningTracks: songData.slice(0, songData.length / 2),
+      eveningTracks: songData.slice(songData.length / 2, songData.length)
     }
   }
 
@@ -26,11 +28,14 @@ class App extends Component {
     });
   }
 
-  moveToTop = (index) => {
-   //  let updatedSongData = this.state.songData
-   //
-   // updatedSongData.splice(new_index, 0, arr.splice(index, 1)[0]);
-       console.log("top working", index)
+  moveToTop = (index, side) => {
+    //https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+    //  let updatedSongData = this.state.songData
+    // updatedSongData.splice(new_index, 0, updatedSongData.splice(index, 1)[0]);
+    // this.setState({
+    //   songData: updatedSongData
+    // });
+    console.log("top working", index, side)
   }
 
   render() {
@@ -40,7 +45,7 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} appMarkFavoritedCallback={this.markFavorited}
+          <RadioSet tracks={this.state.songData} eveningTracks={this.state.eveningTracks} morningTracks={this.state.morningTracks} appMarkFavoritedCallback={this.markFavorited}
             appToTopCallback={this.moveToTop} />
         </main>
       </div>

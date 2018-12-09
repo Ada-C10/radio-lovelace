@@ -7,7 +7,7 @@ import songData from './data/tracks.json';
 
 songData.forEach((song, i) => {
   song.id = i;
-  song.favorited = false;
+  song.favorite = false;
 })
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
       songData: songData
     }
   }
-  
+
   markFavorite = (index) => {
     const updatedSongData = this.state.songData;
     updatedSongData[index].favorite = true;
@@ -26,8 +26,6 @@ class App extends Component {
     });
   }
   render() {
-    console.log("data", songData)
-
     return (
       <div className="App">
         <header>

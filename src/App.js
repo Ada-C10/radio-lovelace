@@ -14,7 +14,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      songs: songData
+      songs: songData,
+      morningTrackCount: songData.length / 2,
+      playlists: {
+        morningTracks: songData.slice(0, songData.length / 2),
+        eveningTracks: songData.slice(songData.length / 2, songData.length)
+      }
     };
   };
 
@@ -32,7 +37,28 @@ class App extends Component {
     const newSongs = this.state.songs.slice(0);
     const index = newSongs.findIndex(k => k.id === songId);
     const temp = newSongs.splice(index, 1);
-    index <= this.state.songs.length / 2 ? newSongs.unshift(temp[0]) : newSongs.splice(Math.round(newSongs.length / 2), 0, temp[0]);
+    index <= this.state.morningTrackCount ? newSongs.unshift(temp[0]) : newSongs.splice(this.state.morningTrackCount, 0, temp[0]);
+
+    this.setState({
+      songs: newSongs
+    });
+  };
+
+  changePlayList = (songId) => {
+    const newSongs = this.state.songs.slice(0);
+    const index = newSongs.findIndex(k => k.id === songId);
+    const temp = newSongs.splice(index, 1);
+    if (index <= this.state.morningTrackCount) {
+      this.setState({
+        morningTrackCount: this.state.morningTrackCount - 1
+      });
+      newSongs.splice(this.state.morningTrackCount - 1, 0, temp[0]);
+    } else {
+      this.setState({
+        morningTrackCount: this.state.morningTrackCount + 1
+      });
+      newSongs.unshift(temp[0]);
+    }
 
     this.setState({
       songs: newSongs
@@ -50,7 +76,10 @@ class App extends Component {
           <RadioSet
             tracks={this.state.songs}
             changeFavoriteCallback={this.changeFavorite}
-            moveToTopCallback={this.moveToTop} />
+            moveToTopCallback={this.moveToTop}
+            changePlayListCallback={this.changePlayList}
+            playlists={this.state.playlists}
+            morningTrackCount={this.state.morningTrackCount} />
         </main>
       </div>
     );

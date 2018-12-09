@@ -29,23 +29,9 @@ const Playlist = (props) => {
   let tracks = props.tracks;
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);
-  //
-  // const moveToTop = (songId) => {
-  //   console.log("I am now here and still confurseds");
-  //   console.log(tracks[0].id);
-  //   // console.log(songId);
-  //   // console.log(tracks.findIndex(k => k.id === songId));
-  //
-  //   let temp = tracks.splice(tracks.findIndex(k => k.id === songId), 1);
-  //   tracks.unshift(temp[0]);
-  //   console.log(tracks[0].id);
-  //
-  // };
-
   const trackElements = tracks.map((track, i) => {
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
-    // console.log(props.changeFavorite);
 
     return (
       <Track
@@ -53,6 +39,7 @@ const Playlist = (props) => {
         {...track}
         changeFavoriteCallback={props.changeFavoriteCallback}
         moveToTopCallback={props.moveToTopCallback}
+        changePlayListCallback={props.changePlayListCallback}
       />
     );
   });

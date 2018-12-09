@@ -5,40 +5,54 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-class Track extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      title: props.title,
-      artist: props.artist,
-      playtime: props.playtime,
-      albumart: props.albumart,
-      favorite: false
-    };
-  };
+// class Track extends React.Component {
+//   constructor(props) {
+//     super();
+//     this.state = {
+//       title: props.title,
+//       artist: props.artist,
+//       playtime: props.playtime,
+//       albumart: props.albumart,
+//       favorite: false
+//     };
+//   };
+//
+//   changeFavorite = () => {
+//     console.log("I am hereryzf");
+//     this.setState({
+//       favorite: !this.state.favorite
+//     });
+//   };
+const Track = ({id, title, artist, playtime, albumart, favorite, changeFavoriteCallback}) => {
 
-  changeFavorite = () => {
-    console.log("I am hereryzf");
-    this.setState({
-      favorite: !this.state.favorite
-    });
-  };
-  // const Track = ({title, artist, playtime, albumart, favorite}) => {
+  // render() {
+    // changeFavorite = () => {
+    //   console.log("I am hereryzf");
+    //   this.setState({
+    //     favorite: !this.state.favorite
+    //   });
+    // };
 
-  render() {
+    // console.log(changeFavorite);
+    // console.log(props.changeFav);
+    // console.log(id);
+    // console.log(favorite);
+    const changeFavoriteChild = () => {
+      changeFavoriteCallback(id)
+    }
 
     return (
       <li className="track">
-        <img className="track--albumart" alt={`album art for ${this.state.title}`} src={this.state.albumart} />
-        <h3 className="track--title">{this.state.title}</h3>
+        <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
+        <h3 className="track--title">{title}</h3>
         <input
           type="checkbox"
           className="track--favorite"
-          checked={!this.state.favorite}
-          onChange={this.changeFavorite}
+          checked={!favorite}
+          onChange={changeFavoriteChild}
           />
-        <p className="track--artist">{this.state.artist}</p>
-        <p className="track--playtime">{this.state.playtime}</p>
+        <p className="track--artist">{artist}</p>
+        <p className="track--playtime">{playtime}</p>
         <button
           className="track--control track--to-top"
           >
@@ -52,7 +66,7 @@ class Track extends React.Component {
       </li>
     );
   };
-};
+// };
 
 Track.propTypes = {
   title: PropTypes.string,

@@ -9,16 +9,19 @@ const RadioSet = (props) => {
     morningTracks: props.tracks.slice(0, props.tracks.length / 2),
     eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
   };
+  // console.log(props);
   return (
     <div className="radio-set">
       <section className="radio-set--playlist-container">
         <Playlist
           side="Morning"
           tracks={playlists.morningTracks}
+          changeFavorite={props.changeFavoriteCallback}
         />
         <Playlist
           side="Evening"
           tracks={playlists.eveningTracks}
+          changeFavorite={props.changeFavoriteCallback}
         />
       </section>
     </div>

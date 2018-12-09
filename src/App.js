@@ -18,8 +18,12 @@ class App extends Component {
     this.state = {
       songData: songData
     }
-  }
+}
 
+  findSongIndex = (SondData, songID) => {
+    let songIndex = songData.findIndex(song => song.id === songID)
+  }
+// need songID and songlist
   markFavorite = (songID) => {
     let updatedSongData = this.state.songData;
     let song = updatedSongData.find(item => item === songData[songID]);
@@ -32,7 +36,7 @@ class App extends Component {
   sendToTop = (songIndex) => {
     let updatedSongData = this.state.songData;
     let song = updatedSongData.find(item => item === songData[songIndex]);
-    console.log(song);
+    console.log(song.OfIndex);
     // if songindex is between second value, then move it to top of second array
     // updatedSongData.unshift(updatedSongData.splice(songIndex, 1)[0]);
     if (songIndex < 42) {

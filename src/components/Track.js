@@ -18,6 +18,10 @@ const Track = (props) => {
     props.listMarkFavoritedCallback(props.index);
   }
 
+  const onToTop = () => {
+    props.listToTopCallback(props.index);
+  }
+
   return (
 
     <li className="track">
@@ -33,6 +37,7 @@ const Track = (props) => {
       <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top"
+        onClick={onToTop}
         >
         <span role="img" aria-label="send to top">🔝</span>
       </button>

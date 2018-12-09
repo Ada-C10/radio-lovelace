@@ -32,13 +32,21 @@ class App extends Component {
     //https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
 
     let updatedSongData = this.state.songData;
-    let new_index = 0;
-    side === "Morning" ? new_index = 0 : new_index = songData.length;
-    updatedSongData.splice(new_index, 0, updatedSongData.splice(index, 1)[0]);
+    let newIndex = 0;
+    side === "Morning" ? newIndex = 0 : newIndex = this.state.morningTracks.length;
+    // updatedSongData.splice(new_index, 0, updatedSongData.splice(index, 1)[0]);
+    // this.setState({
+    //   songData: updatedSongData
+    // });
+    // newArray = oldArray.slice(indexOfElementToRemove+1).concat(oldArray.slice(0,indexOfElementToRemove));
+      console.log("before", this.state.songData)
+    const elemToUpdate = updatedSongData.splice(index, 1)
+    updatedSongData.splice(newIndex, 0, elemToUpdate[0])
     this.setState({
       songData: updatedSongData
     });
-    console.log("top working", index, new_index, side)
+    console.log("after", this.state.songData)
+    console.log("top working", index, newIndex, elemToUpdate)
   }
 
   render() {

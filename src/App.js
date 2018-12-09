@@ -25,6 +25,7 @@ class App extends Component {
       songData: updatedSongData
     });
   }
+  
   render() {
     return (
       <div className="App">
@@ -32,7 +33,7 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} markFavoritedCallback={this.markFavorite}/>
+          <RadioSet tracks={this.state.songData} appMarkFavoritedCallback={this.markFavorite} />
         </main>
       </div>
     );

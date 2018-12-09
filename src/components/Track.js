@@ -5,38 +5,9 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-// class Track extends React.Component {
-//   constructor(props) {
-//     super();
-//     this.state = {
-//       title: props.title,
-//       artist: props.artist,
-//       playtime: props.playtime,
-//       albumart: props.albumart,
-//       favorite: false
-//     };
-//   };
-//
-//   changeFavorite = () => {
-//     console.log("I am hereryzf");
-//     this.setState({
-//       favorite: !this.state.favorite
-//     });
-//   };
+
 const Track = ({id, title, artist, playtime, albumart, favorite, changeFavoriteCallback}) => {
 
-  // render() {
-    // changeFavorite = () => {
-    //   console.log("I am hereryzf");
-    //   this.setState({
-    //     favorite: !this.state.favorite
-    //   });
-    // };
-
-    // console.log(changeFavorite);
-    // console.log(props.changeFav);
-    // console.log(id);
-    // console.log(favorite);
     const changeFavoriteChild = () => {
       changeFavoriteCallback(id)
     }

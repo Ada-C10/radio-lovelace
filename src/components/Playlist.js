@@ -32,12 +32,12 @@ const Playlist = (props) => {
   const trackElements = tracks.map((track, i) => {
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
-    console.log(props.changeFavorite);
+    // console.log(props.changeFavorite);
     return (
       <Track
         key={i}
         {...track}
-        changeFavoriteCallback={props.changeFavorite}
+        changeFavoriteCallback={props.changeFavoriteCallback}
       />
     );
   });

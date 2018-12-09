@@ -26,7 +26,7 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} markFavoriteCallback={this.markFavorite} />
+          <RadioSet tracks={this.state.songData} markFavoriteCallback={this.markFavorite} sendToTopCallback={this.sendToTop}/>
         </main>
       </div>
     );
@@ -38,6 +38,15 @@ class App extends Component {
     this.setState({songData: newSongData});
   };
 
+  sendToTop = (song_id) => {
+    // let newSongData = this.state.songData;
+    // newSongData = newSongData.filter(song => song.id !== song_id);
+    // newSongData.unshift(song_id);
+    // // newSongData.unshift(song_id);
+    // // newSongData.splice(song_id);
+    // this.setState({songData: newSongData});
+    console.log("hit the callback");
+  }
 
 
 }

@@ -6,12 +6,13 @@ import "./styles/Track.css";
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
 class Track extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   onFavoriteChange = (event) => {
     this.props.markFavoriteCallback(this.props.id);
+  }
+
+  onTopClick = (event) => {
+    this.props.sendToTopCallback(this.props.id);
   }
 
   render () {
@@ -20,7 +21,7 @@ class Track extends React.Component {
     return (
       <li className="track">
         <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
-        <h3 className="track--title">{title}</h3> //look here
+        <h3 className="track--title">{title}</h3>
         <input
           type="checkbox"
           className="track--favorite"
@@ -31,6 +32,7 @@ class Track extends React.Component {
         <p className="track--playtime">{playtime}</p>
         <button
           className="track--control track--to-top"
+          onClick={this.onTopClick}
           >
           <span role="img" aria-label="send to top">🔝</span>
         </button>

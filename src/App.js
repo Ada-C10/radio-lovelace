@@ -36,11 +36,13 @@ class App extends Component {
   sendToTop = (songID) => {
     let updatedSongData = this.state.songData;
     let song = updatedSongData.find(item => item === songData[songID]);
+    let songIndex = updatedSongData.findIndex(item => item === song)
+
     updatedSongData = updatedSongData.filter(item => item !== song);
 
     // if songindex is between second value, then move it to top of second array
     // updatedSongData.unshift(updatedSongData.splice(songIndex, 1)[0]);
-    if (songID < 42) {
+    if (songIndex < 42) {
       updatedSongData.unshift(song);
     } else {
       updatedSongData.splice(43, 0, song);

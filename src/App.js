@@ -18,14 +18,14 @@ class App extends Component {
     }
   }
 
-  markFavorite = (index) => {
+  markFavorited = (index) => {
     const updatedSongData = this.state.songData;
     updatedSongData[index].favorite = true;
     this.setState({
       songData: updatedSongData
     });
   }
-  
+
   render() {
     return (
       <div className="App">
@@ -33,7 +33,7 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} appMarkFavoritedCallback={this.markFavorite} />
+          <RadioSet tracks={this.state.songData} appMarkFavoritedCallback={this.markFavorited} />
         </main>
       </div>
     );

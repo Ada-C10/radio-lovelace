@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import "./styles/RadioSet.css";
 
 import Playlist from './Playlist';
@@ -35,5 +36,10 @@ const RadioSet = (props) =>  {
     </div>
   );
 };
+
+RadioSet.propTypes = {
+  morningTracks: PropTypes.array,
+  eveningTracks: PropTypes.array,
+}
 
 export default RadioSet;

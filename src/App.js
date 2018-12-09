@@ -17,14 +17,7 @@ class App extends Component {
       songData: songData
     }
   }
-
-  // createSongData = (songData) => {
-  //   return songData.forEach((song, i) => {
-  //     song.id = i;
-  //     song.favorited = false;
-  //   })
-  // }
-
+  
   markFavorite = (index) => {
     const updatedSongData = this.state.songData;
     updatedSongData[index].favorite = true;

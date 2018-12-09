@@ -30,12 +30,15 @@ class App extends Component {
 
   moveToTop = (index, side) => {
     //https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
-    //  let updatedSongData = this.state.songData
-    // updatedSongData.splice(new_index, 0, updatedSongData.splice(index, 1)[0]);
-    // this.setState({
-    //   songData: updatedSongData
-    // });
-    console.log("top working", index, side)
+
+    let updatedSongData = this.state.songData;
+    let new_index = 0;
+    side === "Morning" ? new_index = 0 : new_index = songData.length;
+    updatedSongData.splice(new_index, 0, updatedSongData.splice(index, 1)[0]);
+    this.setState({
+      songData: updatedSongData
+    });
+    console.log("top working", index, new_index, side)
   }
 
   render() {

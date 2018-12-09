@@ -36,7 +36,7 @@ class Playlist extends React.Component {
 
   sendToTop = (song_id) => {
     let newTracks = this.state.tracks;
-    const topSong = newTracks.filter(song => song.id === song_id)[0];
+    const topSong = newTracks.find(song => song.id === song_id);
 
     newTracks = newTracks.filter(song => song.id !== song_id);
     newTracks.unshift(topSong);
@@ -49,7 +49,6 @@ class Playlist extends React.Component {
     const tracks = this.state.tracks;
     const trackCount = tracks.length;
     const playtime = calculatePlayTime(tracks);
-    console.log("line 32");
 
     const trackElements = tracks.map((track, i) => {
       // We use "spread syntax" here to pass in all the properties of

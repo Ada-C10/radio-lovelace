@@ -20,13 +20,16 @@ class App extends Component {
     }
 }
 
-  // findSongIndex = (SondData, SongID) => {
-  //   let songIndex = songData.findIndex(song => song.id === songID)
+  findSong = (songList, id) => {
+    return songList.find(item => item === songData[id])
+  }
+  // findSongIndex = (songList, songID, song) => {
+  //   songList.findIndex(item => item === song)
   // }
-// need songID and songlist
   markFavorite = (songID) => {
     let updatedSongData = this.state.songData;
-    let song = updatedSongData.find(item => item === songData[songID]);
+    let song = this.findSong(updatedSongData, songID);
+    // let song = updatedSongData.find(item => item === songData[songID]);
 
     song.favorite = true;
 
@@ -35,7 +38,7 @@ class App extends Component {
 
   sendToTop = (songID) => {
     let updatedSongData = this.state.songData;
-    let song = updatedSongData.find(item => item === songData[songID]);
+    let song = this.findSong(updatedSongData, songID);
     let songIndex = updatedSongData.findIndex(item => item === song)
 
     updatedSongData = updatedSongData.filter(item => item !== song);
@@ -53,7 +56,7 @@ class App extends Component {
 
   switchPlaylists = (songID) => {
     let updatedSongData = this.state.songData;
-    let song = updatedSongData.find(item => item === songData[songID]);
+    let song = this.findSong(updatedSongData, songID);
     let songIndex = updatedSongData.findIndex(item => item === song)
     updatedSongData = updatedSongData.filter(item => item !== song);
 

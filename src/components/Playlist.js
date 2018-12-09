@@ -60,6 +60,7 @@ class Playlist extends React.Component {
           markFavoriteCallback={this.props.markFavoriteCallback}
           sendToTopCallback={this.sendToTop}
           switchListsCallback={this.props.switchListsCallback}
+          radioSet={this.props.radioSet}
         />
       );
     });

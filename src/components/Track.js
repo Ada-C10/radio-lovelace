@@ -20,7 +20,7 @@ class Track extends React.Component {
   }
 
   render () {
-    const {id, title, artist, playtime, albumart, favorite} = this.props;
+    const {title, artist, playtime, albumart, favorite} = this.props;
 
     return (
       <li className="track">

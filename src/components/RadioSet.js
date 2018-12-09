@@ -8,22 +8,41 @@ class RadioSet extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      playlists:  {
         morningTracks: props.tracks.slice(0, props.tracks.length / 2),
         eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
-      }
     }
   }
 
-  switchLists = () => {
-    console.log("switch list");
-  };
+  switchLists = (song_id) => {
+  
+    let newMorningTracks = this.state.morningTracks;
+    let newEveningTracks = this.state.eveningTracks;
+
+    const morningSong = newMorningTracks.find(song => song.id === song_id);
+    const eveningSong = newEveningTracks.find(song => song.id === song_id);
+
+    if (morningSong !== undefined) {
+
+      newMorningTracks.splice(newMorningTracks.indexOf(morningSong), 1);
+      newEveningTracks.unshift(morningSong);
+      this.setState({morningTracks: newMorningTracks});
+      this.setState({eveningTracks: newEveningTracks});
+
+
+    } else if (eveningSong !== undefined) {
+
+      newEveningTracks.splice(newEveningTracks.indexOf(eveningSong), 1);
+      newMorningTracks.unshift(eveningSong);
+      this.setState({morningTracks: newMorningTracks});
+      this.setState({eveningTracks: newEveningTracks});
+
+    }
+
+  }
+
 
   render () {
-
-    const playlists = this.state.playlists;
-
-
+    const playlists = this.state;
 
     return (
       <div className="radio-set">

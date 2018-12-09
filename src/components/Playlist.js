@@ -49,7 +49,6 @@ class Playlist extends React.Component {
     const tracks = this.state.tracks;
     const trackCount = tracks.length;
     const playtime = calculatePlayTime(tracks);
-    console.log("line 32");
 
     const trackElements = tracks.map((track, i) => {
       // We use "spread syntax" here to pass in all the properties of
@@ -60,6 +59,7 @@ class Playlist extends React.Component {
           {...track}
           markFavoriteCallback={this.props.markFavoriteCallback}
           sendToTopCallback={this.sendToTop}
+          switchListsCallback={this.props.switchListsCallback}
         />
       );
     });

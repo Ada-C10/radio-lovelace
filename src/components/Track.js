@@ -15,6 +15,10 @@ class Track extends React.Component {
     this.props.sendToTopCallback(this.props.id);
   }
 
+  onSwitchClick = (event) => {
+    this.props.switchListsCallback(this.props.id);
+  }
+
   render () {
     const {id, title, artist, playtime, albumart, favorite} = this.props;
 
@@ -38,6 +42,7 @@ class Track extends React.Component {
         </button>
         <button
           className="track--control track--switch"
+          onClick={this.onSwitchClick}
           >
           <span role="img" aria-label="switch lists">↔</span>
         </button>

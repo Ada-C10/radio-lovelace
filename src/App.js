@@ -19,8 +19,20 @@ class App extends Component {
   };
 
   changeFavorite = (songId) => {
-    let newSongs = this.state.songs;
-    newSongs[songId].favorite = !newSongs[songId].favorite;
+    const newSongs = this.state.songs;
+    const index = newSongs.findIndex(k => k.id === songId);
+    newSongs[index].favorite = !newSongs[index].favorite;
+
+    this.setState({
+      songs: newSongs
+    });
+  };
+
+  moveToTop = (songId) => {
+    const newSongs = this.state.songs.slice(0);
+    const index = newSongs.findIndex(k => k.id === songId);
+    const temp = newSongs.splice(index, 1);
+    index <= this.state.songs.length / 2 ? newSongs.unshift(temp[0]) : newSongs.splice(Math.round(newSongs.length / 2), 0, temp[0]);
 
     this.setState({
       songs: newSongs
@@ -37,7 +49,8 @@ class App extends Component {
         <main className="main">
           <RadioSet
             tracks={this.state.songs}
-            changeFavoriteCallback={this.changeFavorite} />
+            changeFavoriteCallback={this.changeFavorite}
+            moveToTopCallback={this.moveToTop} />
         </main>
       </div>
     );

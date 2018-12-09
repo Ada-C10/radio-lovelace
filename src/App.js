@@ -20,9 +20,9 @@ class App extends Component {
     }
 }
 
-  findSongIndex = (SondData, songID) => {
-    let songIndex = songData.findIndex(song => song.id === songID)
-  }
+  // findSongIndex = (SondData, SongID) => {
+  //   let songIndex = songData.findIndex(song => song.id === songID)
+  // }
 // need songID and songlist
   markFavorite = (songID) => {
     let updatedSongData = this.state.songData;
@@ -33,37 +33,33 @@ class App extends Component {
     this.setState({songData: updatedSongData});
   }
 
-  sendToTop = (songIndex) => {
+  sendToTop = (songID) => {
     let updatedSongData = this.state.songData;
-    let song = updatedSongData.find(item => item === songData[songIndex]);
-    console.log(song.OfIndex);
+    let song = updatedSongData.find(item => item === songData[songID]);
+    updatedSongData = updatedSongData.filter(item => item !== song);
+
     // if songindex is between second value, then move it to top of second array
     // updatedSongData.unshift(updatedSongData.splice(songIndex, 1)[0]);
-    if (songIndex < 42) {
-      updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
-      updatedSongData.unshift(songData[songIndex]);
-      // updatedSongData[songIndex].index = 0
+    if (songID < 42) {
+      updatedSongData.unshift(song);
     } else {
-      updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
-      updatedSongData.splice(43, 0, songData[songIndex]);
-      // updatedSongData[songIndex].index = 43
+      updatedSongData.splice(43, 0, song);
     }
 
     this.setState({songData: updatedSongData})
   }
 
-  switchPlaylists = (songIndex) => {
+  switchPlaylists = (songID) => {
     let updatedSongData = this.state.songData;
+    let song = updatedSongData.find(item => item === songData[songID]);
+    let songIndex = updatedSongData.findIndex(item => item === song)
+    updatedSongData = updatedSongData.filter(item => item !== song);
+
 
     if (songIndex < 42) {
-      updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
-      updatedSongData.splice(43, 0, songData[songIndex]);
-      // updatedSongData[songIndex].index = 43
+      updatedSongData.splice(43, 0, song);
     } else {
-      updatedSongData = updatedSongData.filter(item => item !== songData[songIndex]);
-      updatedSongData.unshift(songData[songIndex]);
-      // updatedSongData[songIndex].index = 0
-
+      updatedSongData.unshift(song);
     }
 
     this.setState({songData: updatedSongData})

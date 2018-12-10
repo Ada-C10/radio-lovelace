@@ -13,22 +13,39 @@ songData.forEach((song, i) => {
 class App extends Component {
     constructor(props){
         super(props);
-        this.handleFavorite = this.handleFavorite.bind(this);
+        // this.handleFavorite = this.handleFavorite.bind(this);
         this.state = {
-            songs: songData
+            songs: songData,
+            playlists: {
+                morningTracks: songData.slice(0, songData.length / 2),
+                eveningTracks: songData.slice(songData.length / 2, songData.length)
+            }
+
         };
     }
     handleFavorite = (id) => {
-        const song = this.state.songs[id];
-        console.log(song);
-        song.favorite = !song.favorite;
-        console.log(song);
-        this.setState(()=>{
+        const updateSongs = this.state.songs;
+        updateSongs[id].favorite = !updateSongs[id].favorite;
+        this.setState(() => {
             return {
-                songs: !this.state.songs[id].favorite
-            }
+                songs: updateSongs
+            };
         });
-    }
+    };
+
+    handleTop = (id) => {
+        const orderSongs = this.state.songs.slice(0);
+        console.log(orderSongs);
+
+
+
+    };
+
+    handleSwitch = (id) => {
+        console.log(this.state.songs)
+    };
+
+
   render() {
     return (
       <div className="App">
@@ -38,7 +55,9 @@ class App extends Component {
         <main className="main">
           <RadioSet
               tracks={songData}
-              handleFavoriteCallback={this.handleFavorite}
+              handleFavoriteCallback={this.handleFavorite.bind(this)}
+              handleTopCallback={this.handleTop.bind(this)}
+              handleSwitchCallback={this.handleSwitch.bind(this)}
           />
         </main>
       </div>

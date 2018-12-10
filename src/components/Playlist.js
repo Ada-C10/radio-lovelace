@@ -26,6 +26,7 @@ const calculatePlayTime = (tracks) => {
 }
 
 const Playlist = (props) => {
+// console.log("tracks", props.tracks )
   const tracks = props.tracks;
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);

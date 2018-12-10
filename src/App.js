@@ -29,24 +29,52 @@ class App extends Component {
   }
 
   moveToTop = (index, side) => {
+    console.log("index", index, "side", side)
 
-    let updatedSongData = this.state.songData;
+    let updatedSongData = "";
     let newIndex = 0;
-    side === "Morning" ? newIndex = 0 : newIndex = this.state.morningTracks.length;
-
-    // console.log("before", this.state.songData)
-    const elemToUpdate = updatedSongData.splice(index, 1)
-    updatedSongData.splice(newIndex, 0, elemToUpdate[0])
-    this.setState({
-      songData: updatedSongData
-    });
-    // console.log("after", this.state.songData)
-    // console.log("top working", index, newIndex, elemToUpdate)
+    let elemToUpdate = "";
+    // side === "Morning" ? newIndex = 0 : newIndex = this.state.morningTracks.length;
+    if (side === "Morning") {
+      newIndex = 0
+      updatedSongData = this.state.morningTracks
+      elemToUpdate = updatedSongData.splice(index, 1)
+      updatedSongData.splice(newIndex, 0, elemToUpdate[0])
+      this.setState({
+        morningTracks: updatedSongData
+      })
+    }
+    else {
+      newIndex = 0
+      updatedSongData = this.state.eveningTracks
+      elemToUpdate = updatedSongData.splice(index - 43, 1)
+      console.log(updatedSongData)
+      console.log(elemToUpdate)
+      updatedSongData.splice(newIndex, 0, elemToUpdate[0])
+      console.log(updatedSongData)
+      this.setState({
+        eveningTracks: updatedSongData
+      })
+    }
   }
 
-  switchLists = (index, side) => {
-    console.log("switching", index, side)
-  }
+  // console.log("before", this.state.songData)
+  // const elemToUpdate = updatedSongData.splice(index, 1)
+  // updatedSongData.splice(newIndex, 0, elemToUpdate[0])
+  // this.setState({
+  //   songData: updatedSongData
+  // });
+  // console.log("after", this.state.songData)
+  // console.log("top working", index, newIndex, elemToUpdate)
+  // }
+
+  // switchLists = (index, side) => {
+  //   console.log("switching", index, side)
+  //   let updatedSongData = this.state.songData;
+  //   if (side === "Morning"){
+  //
+  //   }
+  // }
 
   render() {
     return (
@@ -55,7 +83,8 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} eveningTracks={this.state.eveningTracks}
+          <RadioSet
+            eveningTracks={this.state.eveningTracks}
             morningTracks={this.state.morningTracks}
             appMarkFavoritedCallback={this.markFavorited}
             appToTopCallback={this.moveToTop}

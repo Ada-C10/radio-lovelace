@@ -4,23 +4,24 @@ import PropTypes from 'prop-types'
 import "./styles/Track.css";
 
 class Track extends Component {
-  constructor({title, artist, playtime, albumart}) {
+  constructor({id, title, artist, playtime, albumart}) {
     super();
 
     this.state = {
+      id: id,
       favorite: false,
     };
 
   }
 
+  toggleAsFavorite = () => {
+    this.setState({
+      favorite: !this.state.favorite
+    })
+  }
+
   render() {
     console.log(`This track -> state -> favorite: ${this.state.favorite}`)
-
-    const toggleAsFavorite = () => {
-      this.setState({
-        favorite: !this.state.favorite
-      })
-    }
 
     return (
       <li className="track">
@@ -30,12 +31,13 @@ class Track extends Component {
           type="checkbox"
           className="track--favorite"
           checked={!this.state.favorite}
-          onChange={ toggleAsFavorite }
+          onChange={ this.toggleAsFavorite }
         />
         <p className="track--artist">{this.props.artist}</p>
         <p className="track--playtime">{this.props.playtime}</p>
         <button
           className="track--control track--to-top"
+          onClick={ this.props.moveTrackToTopCallback.bind(this, this.props.id) }
           >
           <span role="img" aria-label="send to top">🔝</span>
         </button>
@@ -79,11 +81,12 @@ class Track extends Component {
 // };
 
 Track.propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
   artist: PropTypes.string,
   playtime: PropTypes.string,
   albumart: PropTypes.string,
-  favorite: PropTypes.bool,
+  moveTrackToTopCallback: PropTypes.func
 }
 
 export default Track;

@@ -44,6 +44,10 @@ class App extends Component {
     // console.log("top working", index, newIndex, elemToUpdate)
   }
 
+  switchLists = (index, side) => {
+    console.log("switching", index, side)
+  }
+
   render() {
     return (
       <div className="App">
@@ -51,8 +55,12 @@ class App extends Component {
           <h1 className="page-header--title">Radio Lovelace</h1>
         </header>
         <main className="main">
-          <RadioSet tracks={this.state.songData} eveningTracks={this.state.eveningTracks} morningTracks={this.state.morningTracks} appMarkFavoritedCallback={this.markFavorited}
-            appToTopCallback={this.moveToTop} />
+          <RadioSet tracks={this.state.songData} eveningTracks={this.state.eveningTracks}
+            morningTracks={this.state.morningTracks}
+            appMarkFavoritedCallback={this.markFavorited}
+            appToTopCallback={this.moveToTop}
+            appSwitchCallback={this.switchLists}
+            />
         </main>
       </div>
     );

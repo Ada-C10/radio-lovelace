@@ -38,6 +38,7 @@ const Playlist = (props) => {
         index={track.id}
         listMarkFavoritedCallback={props.radioMarkFavoritedCallback}
         listToTopCallback={props.radioToTopCallback}
+        listSwitchCallback={props.radioSwitchCallback}
         side={props.side}
         {...track}
         />

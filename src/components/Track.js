@@ -22,6 +22,10 @@ const Track = (props) => {
     props.listToTopCallback(props.index, props.side);
   }
 
+  const onSwitch = () => {
+    props.listSwitchCallback(props.index, props.side);
+  }
+
   return (
 
     <li className="track">
@@ -43,6 +47,7 @@ const Track = (props) => {
       </button>
       <button
         className="track--control track--switch"
+        onClick={onSwitch}
         >
         <span role="img" aria-label="switch lists">↔</span>
       </button>

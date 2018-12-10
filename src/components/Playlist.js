@@ -35,7 +35,7 @@ const Playlist = (props) => {
     // the variable 'track' as props. Go look it up!
     return (
       <Track
-        key={i}
+        key={`${track.title}${track.artist}`}
         {...track}
         side={props.side}
         handleFavoriteCallback={props.handleFavoriteCallback}

@@ -4,7 +4,7 @@ import "./styles/RadioSet.css";
 import Playlist from './Playlist';
 
 class RadioSet extends React.Component {
-  // console.log(`Radio set for ${props.tracks.length} tracks`);
+
   constructor(props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ class RadioSet extends React.Component {
   }
 
   switchLists = (song_id) => {
-  
+
     let newMorningTracks = this.state.morningTracks;
     let newEveningTracks = this.state.eveningTracks;
 

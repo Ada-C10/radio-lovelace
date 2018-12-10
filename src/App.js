@@ -7,7 +7,7 @@ import songData from './data/tracks.json';
 
 songData.forEach((song, i) => {
   song.id = i;
-  song.favorite = false;  //set favorite prop
+  song.favorite = false;
 });
 
 class App extends Component {
@@ -31,10 +31,6 @@ class App extends Component {
       </div>
     );
   }
-
-  findById = (song_id) => {
-
-  };
 
   markFavorite = (song_id) => {
     const newSongData = this.state.songData;

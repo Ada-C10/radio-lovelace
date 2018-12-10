@@ -38,7 +38,7 @@ class Playlist extends React.Component {
     let newTracks = this.state.tracks;
     const topSong = newTracks.filter(song => song.id === song_id)[0];
 
-    newTracks = newTracks.filter(song => song.id !== song_id);
+    newTracks.splice(newTracks.indexOf(topSong), 1);
     newTracks.unshift(topSong);
 
     this.setState({tracks: newTracks});

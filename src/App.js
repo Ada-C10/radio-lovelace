@@ -29,26 +29,20 @@ class App extends Component {
   }
 
   moveToTop = (index, side) => {
-    console.log("index", index, "side", side)
     let updatedSongData = "";
-    let newIndex = 0;
     let elemToUpdate = "";
     if (side === "Morning") {
-      newIndex = 0
       updatedSongData = this.state.morningTracks
       elemToUpdate = updatedSongData.splice(index, 1)
-      updatedSongData.splice(newIndex, 0, elemToUpdate[0])
+      updatedSongData.splice(0, 0, elemToUpdate[0])
       this.setState({
         morningTracks: updatedSongData
       })
     }
     else {
-      newIndex = 0
       updatedSongData = this.state.eveningTracks
       elemToUpdate = updatedSongData.splice(index - this.state.morningTracks.length, 1)
-      console.log(updatedSongData)
-      console.log(elemToUpdate)
-      updatedSongData.splice(newIndex, 0, elemToUpdate[0])
+      updatedSongData.splice(0, 0, elemToUpdate[0])
       this.setState({
         eveningTracks: updatedSongData
       })
@@ -78,6 +72,15 @@ class App extends Component {
       elemToUpdate = updatedMorningData.splice(index, 1)
       console.log(elemToUpdate)
       updatedEveningData.splice(0, 0, elemToUpdate[0])
+      this.setState({
+        morningTracks: updatedMorningData,
+        eveningTracks: updatedEveningData
+      })
+    }
+    else {
+      elemToUpdate = updatedEveningData.splice(index - this.state.morningTracks.length, 1)
+      console.log(elemToUpdate)
+      updatedMorningData.splice(0, 0, elemToUpdate[0])
       this.setState({
         morningTracks: updatedMorningData,
         eveningTracks: updatedEveningData

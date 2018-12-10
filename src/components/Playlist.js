@@ -39,16 +39,22 @@ const Playlist = (props) => {
     // the variable 'track' as props. Go look it up!
 
 
-    const makeTopCallback  = (i)=>{
+    const makeTop = (i)=>{
       // console.log(props);
       props.topCallback(i);
+    };
+
+    const makeSwitch  = (i)=>{
+      // console.log(props);
+      props.radioSwitchCallback(i);
     };
 
     return (
       <Track
         key={`${track.title}${track.artist}`}
         index= {i}
-        toTopCallback = {makeTopCallback}
+        toTopCallback = {makeTop}
+        listSwitchCallback ={makeSwitch}
         {...track}
       />
     );

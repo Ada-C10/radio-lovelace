@@ -5,19 +5,33 @@ import Playlist from './Playlist';
 
 const RadioSet = (props) => {
   console.log(`Radio set for ${props.tracks.length} tracks`);
-  const playlists = {
-    morningTracks: props.tracks.slice(0, props.tracks.length / 2),
-    eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
+
+  let playlists = {
+    morningTracks: props.tracks.slice(0, props.leftTrekCount),
+    eveningTracks: props.tracks.slice(props.leftTrekCount, props.tracks.length)
   };
 
-  const radioCallbackLeft =(index)=>{
-    // console.log(props);
-    props.appCallback(index);
-  };
 
-  const radioCallbackRight =(index)=>{
-    // console.log(props);
+  const radioTopRight =(index)=>{
+
     props.appCallback(index + playlists.morningTracks.length);
+
+  };
+
+  const radioTopLeft =(index)=>{
+
+    props.appCallback(index);
+
+  };
+
+  const radioSwitchRight =(index)=>{
+
+    props.appSwitchCallback(index);
+  };
+
+  const radioSwitchLeft =(index)=>{
+
+    props.appSwitchCallback(index + playlists.morningTracks.length);
   };
 
 
@@ -27,12 +41,14 @@ const RadioSet = (props) => {
         <Playlist
           side="Morning"
           tracks={playlists.morningTracks}
-          topCallback={radioCallbackLeft}
+          topCallback={radioTopLeft}
+          radioSwitchCallback={radioSwitchRight}
         />
         <Playlist
           side="Evening"
           tracks={playlists.eveningTracks}
-          topCallback={radioCallbackRight}
+          topCallback={radioTopRight}
+          radioSwitchCallback={radioSwitchLeft}
         />
       </section>
     </div>

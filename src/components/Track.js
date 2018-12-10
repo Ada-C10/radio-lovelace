@@ -15,6 +15,10 @@ const Track = (props) => {
     props.toTopCallback(props.index);
   };
 
+  const trackSwitchClick = ()=>{
+    props.listSwitchCallback(props.index);
+  };
+
   return (
     <li className="track">
       <img className="track--albumart" alt={`album art for ${props.title}`} src={props.albumart} />
@@ -36,6 +40,7 @@ const Track = (props) => {
       </button>
       <button
         className="track--control track--switch"
+        onClick={trackSwitchClick}
         >
         <span role="img" aria-label="switch lists">↔</span>
       </button>

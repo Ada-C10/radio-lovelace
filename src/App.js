@@ -26,3 +26,19 @@ class App extends Component {
     }
     console.log(songData);
   }
+
+  render() {
+  return (
+    <div className="App">
+      <header>
+        <h1 className="page-header--title">Radio Lovelace</h1>
+      </header>
+      <main className="main">
+        <RadioSet tracks={this.state.songData} />
+      </main>
+    </div>
+  );
+}
+}
+
+export default App;

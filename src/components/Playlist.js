@@ -26,17 +26,29 @@ const calculatePlayTime = (tracks) => {
 };
 
 
+
 const Playlist = (props) => {
   const tracks = props.tracks;
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);
+
+
+
   const trackElements = tracks.map((track, i) => {
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
 
+
+    const makeTopCallback  = (i)=>{
+      // console.log(props);
+      props.topCallback(i);
+    };
+
     return (
       <Track
         key={`${track.title}${track.artist}`}
+        index= {i}
+        toTopCallback = {makeTopCallback}
         {...track}
       />
     );

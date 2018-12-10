@@ -7,32 +7,48 @@ import songData from './data/tracks.json';
 
 songData.forEach((song, i) => {
   song.id = i;
-  // song.favorite = false;
+  song.favorite = false;
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
     this.state = {
-      favorite: false,
-      tracks: songData
+      tracks: songData,
+      // favorite: false,
+      playlists: {
+        morningTracks: songData.slice(0, songData.length / 2),
+        eveningTracks: songData.slice(songData.length / 2, songData.length)
+      }
     };
-  }
 
-  handleChange(i) {
+  };
+
+  clickFavorite = (songId) => {
+    const newTracks = this.state.tracks;
+    const index = newTracks.findIndex(track => track.id === songId)
+    const song = this.find
+    newTracks[index].favorite = !newTracks[index].favorite;
+
     this.setState({
-      favorite: !this.state.favorite,
+      tracks: newTracks,
     })
-  }
+  };
 
-  moveTrackUp(i) {
-    const newTracks = this.state.tracks.slice();
-    const index = newTracks.findIndex(track => track.id === i)
+  moveTrackUp = (songId) => {
+    const newTrackList = this.state.tracks.slice();
+    const index = newTrackList.findIndex(track => track.id === songId);
+    const temp = newTrackList.splice(index, 1);
 
-    newTracks.unshift(newTracks[index].splice(index,1)[0])
+    if (index <= this.state.playlists.morningTracks.length) {
+      newTrackList.unshift(temp[0])
+    } else {
+      newTrackList.splice(this.state.playlists.morningTracks.length, 0, temp[0])
+    }
 
     this.setState({
-        tracks: newTracks
+        tracks: newTrackList
       });
   };
 
@@ -47,7 +63,8 @@ class App extends Component {
           <RadioSet
             tracks={this.state.tracks}
             favorite={this.state.favorite}
-            onChange={(i) => this.handleChange(i)}
+            playlists={this.state.playlists}
+            clickFavoriteCallback={this.clickFavorite}
             moveTrackUpCallback={this.moveTrackUp}
             />
         </main>

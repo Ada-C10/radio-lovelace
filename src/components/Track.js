@@ -5,7 +5,16 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-const Track = ({i, title, artist, playtime, albumart, favorite, onChange, moveTrackUpCallback}) => {
+const Track = ({id, title, artist, playtime, albumart, favorite, clickFavoriteCallback, moveTrackUpCallback}) => {
+
+  const clickFavoriteHandler = () => {
+    clickFavoriteCallback({id});
+   };
+
+  const moveTrackUpHandler = () => {
+    moveTrackUpCallback({id});
+  } ;
+
   return (
     <li className="track">
       <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
@@ -13,15 +22,14 @@ const Track = ({i, title, artist, playtime, albumart, favorite, onChange, moveTr
       <input
         type="checkbox"
         className="track--favorite"
-        // checked={!favorite}
-        defaultChecked="false"
-        onChange={onChange}
+        defaultChecked={!favorite}
+        onChange={clickFavoriteHandler}
       />
       <p className="track--artist">{artist}</p>
       <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top"
-        onClick={moveTrackUpCallback(i)}
+        onClick={moveTrackUpHandler}
         >
         <span role="img" aria-label="send to top">🔝</span>
       </button>

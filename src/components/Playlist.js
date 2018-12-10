@@ -37,7 +37,7 @@ const Playlist = (props) => {
         key={i}
         {...track}
         favorite={props.favorite}
-        onChange={(i) => props.onChange(i)}
+        clickFavoriteCallback={props.clickFavoriteCallback}
         moveTrackUpCallback={props.moveTrackUpCallback}
       />
     );

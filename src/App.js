@@ -47,7 +47,7 @@ class App extends Component {
     else {
       newIndex = 0
       updatedSongData = this.state.eveningTracks
-      elemToUpdate = updatedSongData.splice(index - 43, 1)
+      elemToUpdate = updatedSongData.splice(index - this.state.morningTracks.length, 1)
       console.log(updatedSongData)
       console.log(elemToUpdate)
       updatedSongData.splice(newIndex, 0, elemToUpdate[0])

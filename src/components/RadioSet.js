@@ -13,15 +13,15 @@ class RadioSet extends React.Component {
     }
   }
 
-  switchLists = (song_id) => {
+  switchLists = (songId) => {
 
     let newMorningTracks = this.state.morningTracks;
     let newEveningTracks = this.state.eveningTracks;
 
-    const morningSong = newMorningTracks.find(song => song.id === song_id);
-    const eveningSong = newEveningTracks.find(song => song.id === song_id);
+    const morningSong = newMorningTracks.find(song => song.id === songId);
+    const eveningSong = newEveningTracks.find(song => song.id === songId);
 
-    if (morningSong !== undefined) {
+    if (morningSong) {
 
       newMorningTracks.splice(newMorningTracks.indexOf(morningSong), 1);
       newEveningTracks.unshift(morningSong);
@@ -29,7 +29,7 @@ class RadioSet extends React.Component {
       this.setState({eveningTracks: newEveningTracks});
 
 
-    } else if (eveningSong !== undefined) {
+    } else if (eveningSong) {
 
       newEveningTracks.splice(newEveningTracks.indexOf(eveningSong), 1);
       newMorningTracks.unshift(eveningSong);

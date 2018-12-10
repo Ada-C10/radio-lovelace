@@ -34,9 +34,9 @@ class Playlist extends React.Component {
     }
   }
 
-  sendToTop = (song_id) => {
+  sendToTop = (songId) => {
     let newTracks = this.state.tracks;
-    const topSong = newTracks.find(song => song.id === song_id);
+    const topSong = newTracks.find(song => song.id === songId);
 
     newTracks.splice(newTracks.indexOf(topSong), 1);
     newTracks.unshift(topSong);

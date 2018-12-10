@@ -32,9 +32,9 @@ class App extends Component {
     );
   }
 
-  markFavorite = (song_id) => {
+  markFavorite = (songId) => {
     const newSongData = this.state.songData;
-    newSongData[song_id].favorite = !newSongData[song_id].favorite;
+    newSongData[songId].favorite = !newSongData[songId].favorite;
     this.setState({songData: newSongData});
   };
 

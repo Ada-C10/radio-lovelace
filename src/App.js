@@ -48,8 +48,7 @@ class App extends Component {
        updatedLeftCount -= 1;
        updatedTracks.splice(updatedLeftCount, 0, temp);
      }
-     this.setState({tracks: updatedTracks});
-     this.setState({leftCount: updatedLeftCount});
+     this.setState({tracks: updatedTracks,leftCount: updatedLeftCount});
 
   }
 

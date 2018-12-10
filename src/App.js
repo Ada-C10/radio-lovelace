@@ -30,11 +30,9 @@ class App extends Component {
 
   moveToTop = (index, side) => {
     console.log("index", index, "side", side)
-
     let updatedSongData = "";
     let newIndex = 0;
     let elemToUpdate = "";
-    // side === "Morning" ? newIndex = 0 : newIndex = this.state.morningTracks.length;
     if (side === "Morning") {
       newIndex = 0
       updatedSongData = this.state.morningTracks
@@ -51,13 +49,13 @@ class App extends Component {
       console.log(updatedSongData)
       console.log(elemToUpdate)
       updatedSongData.splice(newIndex, 0, elemToUpdate[0])
-      console.log(updatedSongData)
       this.setState({
         eveningTracks: updatedSongData
       })
     }
   }
 
+  // side === "Morning" ? newIndex = 0 : newIndex = this.state.morningTracks.length;
   // console.log("before", this.state.songData)
   // const elemToUpdate = updatedSongData.splice(index, 1)
   // updatedSongData.splice(newIndex, 0, elemToUpdate[0])
@@ -68,13 +66,24 @@ class App extends Component {
   // console.log("top working", index, newIndex, elemToUpdate)
   // }
 
-  // switchLists = (index, side) => {
-  //   console.log("switching", index, side)
-  //   let updatedSongData = this.state.songData;
-  //   if (side === "Morning"){
-  //
-  //   }
-  // }
+  switchLists = (index, side) => {
+    console.log("switching", index, side)
+    let elemToUpdate = "";
+    // let updatedSongData = this.state.songData;
+    // if (side === "Morning"){
+    ///slice off morning palylist, add to evenign, update both
+    let updatedMorningData = this.state.morningTracks
+    let updatedEveningData = this.state.eveningTracks
+    if (side === "Morning"){
+      elemToUpdate = updatedMorningData.splice(index, 1)
+      console.log(elemToUpdate)
+      updatedEveningData.splice(0, 0, elemToUpdate[0])
+      this.setState({
+        morningTracks: updatedMorningData,
+        eveningTracks: updatedEveningData
+      })
+    }
+  }
 
   render() {
     return (

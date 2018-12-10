@@ -6,20 +6,18 @@ import "./styles/Track.css";
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
 const Track = (
-    {title, artist, playtime, albumart,
-        favorite, id, handleFavoriteCallback,
-        handleTopCallback, handleSwitchCallback}) => {
+    {title, artist, playtime, albumart, favorite, id, handleFavoriteCallback, side, handleTopCallback, handleSwitchCallback}) => {
 
   const handleFavorite = () => {
       handleFavoriteCallback(id)
   };
 
   const handleTop = () => {
-    handleTopCallback(id)
+    handleTopCallback(id, side)
   };
 
   const handleSwitch = () => {
-    handleSwitchCallback(id)
+    handleSwitchCallback(id, side)
   };
 
     return (

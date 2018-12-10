@@ -7,8 +7,13 @@ const RadioSet = (props) => {
   console.log(props);
   console.log(`Radio set for ${props.tracks.length} tracks`);
   const playlists = {
-    morningTracks: props.morningTracks,
-    eveningTracks: props.eveningTracks,
+    // divide am and pm playlist am = slice index 0 to first half of list
+      //pm setlist is from second half to full length of track list
+    morningTracks: props.tracks.slice(0, props.tracks.length/2),
+    eveningTracks: props.tracks.slice(props.tracks.length/2, props.tracks.length),
+    // morningTracks: props.tracks.morningTracks,
+    // eveningTracks: props.tracks.eveningTracks,
+
   };
   return (
     <div className="radio-set">

@@ -16,13 +16,9 @@ class App extends Component {
         // this.handleFavorite = this.handleFavorite.bind(this);
         this.state = {
             songs: songData,
-            playlists: {
-                morningTracks: songData.slice(0, songData.length / 2),
-                eveningTracks: songData.slice(songData.length / 2, songData.length)
-            }
-
         };
-    }
+    };
+
     handleFavorite = (id) => {
         const updateSongs = this.state.songs;
         updateSongs[id].favorite = !updateSongs[id].favorite;
@@ -33,16 +29,36 @@ class App extends Component {
         });
     };
 
-    handleTop = (id) => {
-        const orderSongs = this.state.songs.slice(0);
-        console.log(orderSongs);
+    handleTop = (id, side) => {
+        console.log(id, side);
+        let orderSongs = this.state.songs;
+        let temp = orderSongs[id];
+        let tempIndex = orderSongs.findIndex(function(x) {
+            return x === temp
+        });
+
+        console.log('temp index', tempIndex);
+        orderSongs = orderSongs.filter(x => x !== temp);
+        console.log('filtered', orderSongs);
+        if (side === "Morning"){
+            orderSongs.unshift(temp)
+        } else {
+            orderSongs.splice(orderSongs.length/2 + 1, 0, temp)
+        }
+        console.log('final order', orderSongs);
+        this.setState(() => {
+            return {
+                songs: orderSongs
+            };
+        });
 
 
 
     };
 
     handleSwitch = (id) => {
-        console.log(this.state.songs)
+        // console.log(this.state.songs)
+        const playlistSwitch = this.state.songs
     };
 
 
@@ -54,7 +70,7 @@ class App extends Component {
         </header>
         <main className="main">
           <RadioSet
-              tracks={songData}
+              tracks={this.state.songs}
               handleFavoriteCallback={this.handleFavorite.bind(this)}
               handleTopCallback={this.handleTop.bind(this)}
               handleSwitchCallback={this.handleSwitch.bind(this)}

@@ -3,9 +3,15 @@ import PropTypes from 'prop-types'
 
 import "./styles/Track.css";
 
+
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-const Track = ({title, artist, playtime, albumart, favorite}) => {
+const Track = ({title, artist, playtime, albumart, favorite,  topOfListCallback, index, side, swapPlaylistCallback, onFavoritedCallback}) => {
+
+ const topTrackClick = () => topOfListCallback(index, side);
+ const swapPlaylistClick = () => swapPlaylistCallback(index, side);
+ const onFavorited = () => onFavoritedCallback(index,side)
+
   return (
     <li className="track">
       <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
@@ -14,18 +20,21 @@ const Track = ({title, artist, playtime, albumart, favorite}) => {
         type="checkbox"
         className="track--favorite"
         checked={!favorite}
+        onChange={onFavorited}
       />
       <p className="track--artist">{artist}</p>
       <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top"
-        >
+        onClick={topTrackClick}
+       >
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
         className="track--control track--switch"
+        onClick={swapPlaylistClick}
         >
-        <span role="img" aria-label="switch lists">↔</span>
+        <span role="img" aria-label="switch lists" >↔</span>
       </button>
     </li>
   );

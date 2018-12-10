@@ -56,9 +56,27 @@ class App extends Component {
 
     };
 
-    handleSwitch = (id) => {
-        // console.log(this.state.songs)
-        const playlistSwitch = this.state.songs
+    handleSwitch = (id, side) => {
+        let playlistSwitch = this.state.songs;
+        let temp = playlistSwitch[id];
+        let tempIndex = playlistSwitch.findIndex(function(x) {
+            return x === temp
+        });
+
+        console.log('temp index', tempIndex);
+        playlistSwitch = playlistSwitch.filter(x => x !== temp);
+        console.log('filtered', playlistSwitch);
+        if (side === "Evening"){
+            playlistSwitch.unshift(temp)
+        } else {
+            playlistSwitch.splice(playlistSwitch.length/2 + 1, 0, temp)
+        }
+        console.log('final order', playlistSwitch);
+        this.setState(() => {
+            return {
+                songs: playlistSwitch
+            };
+        });
     };
 
 

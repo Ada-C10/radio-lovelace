@@ -26,6 +26,7 @@ const calculatePlayTime = (tracks) => {
 }
 
 const Playlist = (props) => {
+  console.log(props.tracks);
   const tracks = props.tracks;
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);
@@ -35,7 +36,12 @@ const Playlist = (props) => {
     return (
       <Track
         key={i}
+        // key={`${track.title}${track.artist}`}
         {...track}
+        side={props.side}
+        handleFavoriteCallback={props.handleFavoriteCallback}
+        handleTopCallback={props.handleTopCallback}
+        handleSwitchCallback={props.handleSwitchCallback}
       />
     );
   });

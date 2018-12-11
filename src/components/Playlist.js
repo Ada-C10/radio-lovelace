@@ -23,18 +23,28 @@ const calculatePlayTime = (tracks) => {
   minutes = ("" + minutes).padStart(2, "0");
 
   return `${hours}:${minutes}:${seconds}`;
-}
+};
+
+
 
 const Playlist = (props) => {
   const tracks = props.tracks;
   const trackCount = tracks.length;
   const playtime = calculatePlayTime(tracks);
+
+
+
   const trackElements = tracks.map((track, i) => {
-    // We use "spread syntax" here to pass in all the properties of 
+    // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
+
     return (
       <Track
-        key={i}
+        key={`${track.title}${track.artist}`}
+        index= {i}
+        toTopCallback = {() => props.topCallback(i)}
+        listSwitchCallback ={() => props.radioSwitchCallback(i)}
+        listFavoriteCallback ={() => props.radioFavoriteCallback(i)}
         {...track}
       />
     );
@@ -50,7 +60,7 @@ const Playlist = (props) => {
         {trackElements}
       </ul>
     </div>
-  );
+  )
 }
 
 Playlist.propTypes = {

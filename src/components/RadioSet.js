@@ -1,64 +1,122 @@
-import React from 'react';
+
+
+import React, { Component } from 'react';
+
 import "./styles/RadioSet.css";
 import PropTypes from 'prop-types'
 
 import Playlist from './Playlist';
 
-const RadioSet = (props) => {
-  console.log(`Radio set for ${props.tracks.length} tracks`);
 
-  let playlists = {
-    morningTracks: props.tracks.slice(0, props.leftTrekCount),
-    eveningTracks: props.tracks.slice(props.leftTrekCount, props.tracks.length)
+class RadioSet extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      morningTracks: props.tracks.slice(0, props.tracks.length / 2),
+      eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
+    }
+
+  }
+
+
+  radioTopLeft =(index)=>{
+    let updatedMorningTracks = this.state.morningTracks;
+    let temp = updatedMorningTracks.splice(index,1)[0];
+
+    updatedMorningTracks.unshift(temp);
+
+    this.setState({morningTracks: updatedMorningTracks});
+
+  };
+
+  radioTopRight =(index)=>{
+    let updatedEveningTracks = this.state.eveningTracks;
+    let temp = updatedEveningTracks.splice(index,1)[0];
+    updatedEveningTracks.unshift(temp);
+    this.setState({eveningTracks: updatedEveningTracks});
+
   };
 
 
-  const radioTopRight =(index)=>{
+  radioSwitchRight =(index)=>{
+    let updatedMorningTracks = this.state.morningTracks;
+    let updatedEveningTracks = this.state.eveningTracks;
 
-    props.appCallback(index + playlists.morningTracks.length);
+    let temp = updatedMorningTracks.splice(index,1)[0];
+
+    updatedEveningTracks.unshift(temp);
+
+    this.setState({morningTracks: updatedMorningTracks, eveningTracks: updatedEveningTracks});
 
   };
 
-  const radioTopLeft =(index)=>{
+  radioSwitchLeft =(index)=>{
+    let updatedMorningTracks = this.state.morningTracks;
+    let updatedEveningTracks = this.state.eveningTracks;
 
-    props.appCallback(index);
+    let temp = updatedEveningTracks.splice(index,1)[0];
+
+    updatedMorningTracks.unshift(temp);
+
+    this.setState({morningTracks: updatedMorningTracks, eveningTracks: updatedEveningTracks});
 
   };
 
-  const radioSwitchRight =(index)=>{
+  radioFavoriteLeft =(index)=>{
+     const newState = {...this.state};
+     const playlistTracks = [...newState["morningTracks"]];
+     const track = {...playlistTracks[index]};
 
-    props.appSwitchCallback(index);
+     track.favorite = !track.favorite;
+
+     playlistTracks[index] = track;
+     newState["morningTracks"] = playlistTracks;
+     this.setState(newState);
+
   };
 
-  const radioSwitchLeft =(index)=>{
+  radioFavoriteRight =(index)=>{
+     const newState = {...this.state};
+     const playlistTracks = [...newState["eveningTracks"]];
+     const track = {...playlistTracks[index]};
 
-    props.appSwitchCallback(index + playlists.morningTracks.length);
+     track.favorite = !track.favorite;
+
+     playlistTracks[index] = track;
+     newState["eveningTracks"] = playlistTracks;
+     this.setState(newState);
+
   };
 
 
-  return (
-    <div className="radio-set">
-      <section className="radio-set--playlist-container">
-        <Playlist
-          side="Morning"
-          tracks={playlists.morningTracks}
-          topCallback={radioTopLeft}
-          radioSwitchCallback={radioSwitchRight}
-        />
-        <Playlist
-          side="Evening"
-          tracks={playlists.eveningTracks}
-          topCallback={radioTopRight}
-          radioSwitchCallback={radioSwitchLeft}
-        />
-      </section>
-    </div>
-  );
+  render() {
+    return (
+      <div className="radio-set">
+        <section className="radio-set--playlist-container">
+          <Playlist
+            side="Morning"
+            tracks={this.state.morningTracks}
+            topCallback={this.radioTopLeft}
+            radioSwitchCallback={this.radioSwitchRight}
+            radioFavoriteCallback={this.radioFavoriteLeft}
+          />
+          <Playlist
+            side="Evening"
+            tracks={this.state.eveningTracks}
+            topCallback={this.radioTopRight}
+            radioSwitchCallback={this.radioSwitchLeft}
+            radioFavoriteCallback={this.radioFavoriteRight}
+          />
+        </section>
+      </div>
+    );
+  }
 };
 
 RadioSet.propTypes = {
   tracks: PropTypes.array,
-  
+
 }
 
 export default RadioSet;

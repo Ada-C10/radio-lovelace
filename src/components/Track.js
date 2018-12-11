@@ -8,39 +8,31 @@ import "./styles/Track.css";
 
 
 
-// const Track = ({title, artist, playtime, albumart, favorite}) => {
-const Track = (props) => {
-  const trackToTopClick = ()=>{
-    // console.log(props);
-    props.toTopCallback(props.index);
-  };
-
-  const trackSwitchClick = ()=>{
-    props.listSwitchCallback(props.index);
-  };
+const Track = ({title, artist, playtime, albumart, favorite, index, id,toTopCallback,listSwitchCallback, listFavoriteCallback}) => {
 
   return (
     <li className="track">
-      <img className="track--albumart" alt={`album art for ${props.title}`} src={props.albumart} />
-      <h3 className="track--title">{props.title}</h3>
+      <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
+      <h3 className="track--title">{title}</h3>
       <input
         type="checkbox"
         className="track--favorite"
         // checked={!favorite}
-        defaultChecked={!props.favorite}
-        cd
+        defaultChecked={!favorite}
+        onChange={listFavoriteCallback}
+
       />
-      <p className="track--artist">{props.artist}</p>
-      <p className="track--playtime">{props.playtime}</p>
+      <p className="track--artist">{artist}</p>
+      <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top"
-        onClick ={trackToTopClick}
+        onClick ={toTopCallback}
         >
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
         className="track--control track--switch"
-        onClick={trackSwitchClick}
+        onClick={listSwitchCallback}
         >
         <span role="img" aria-label="switch lists">↔</span>
       </button>

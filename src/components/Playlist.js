@@ -38,23 +38,13 @@ const Playlist = (props) => {
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
 
-
-    const makeTop = (i)=>{
-      // console.log(props);
-      props.topCallback(i);
-    };
-
-    const makeSwitch  = (i)=>{
-      // console.log(props);
-      props.radioSwitchCallback(i);
-    };
-
     return (
       <Track
         key={`${track.title}${track.artist}`}
         index= {i}
-        toTopCallback = {makeTop}
-        listSwitchCallback ={makeSwitch}
+        toTopCallback = {() => props.topCallback(i)}
+        listSwitchCallback ={() => props.radioSwitchCallback(i)}
+        listFavoriteCallback ={() => props.radioFavoriteCallback(i)}
         {...track}
       />
     );

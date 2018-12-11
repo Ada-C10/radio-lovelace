@@ -53,6 +53,9 @@ Track.propTypes = {
   playtime: PropTypes.string,
   albumart: PropTypes.string,
   favorite: PropTypes.bool,
+  markFavoriteCallback: PropTypes.func,
+  moveToTopCallback: PropTypes.func,
+  switchListsPlaylistCallback: PropTypes.func
 }
 
 export default Track;

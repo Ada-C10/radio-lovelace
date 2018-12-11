@@ -87,6 +87,7 @@ class Playlist extends Component {
 Playlist.propTypes = {
   tracks: PropTypes.array,
   side: PropTypes.string,
+  switchListsProp: PropTypes.func
 }
 
 export default Playlist;

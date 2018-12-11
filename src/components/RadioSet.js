@@ -6,7 +6,7 @@ import Playlist from './Playlist';
 class RadioSet extends Component {
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       morningTracks: props.tracks.slice(0, props.tracks.length / 2),

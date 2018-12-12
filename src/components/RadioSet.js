@@ -15,7 +15,7 @@ class RadioSet extends Component {
   };
 
   toggleAsFavorite = (index, playlist) => {
-    const newState = { ...this.state }
+    const newState = this.state;
     const newPlaylist = newState[playlist];
     const track = newPlaylist[index];
 
@@ -43,7 +43,7 @@ class RadioSet extends Component {
   }
 
   moveTrackToTop = (index, playlist) => {
-    const newState = { ...this.state }
+    const newState = this.state;
     const newPlaylist = newState[playlist];
     const track = newPlaylist.splice(index, 1)[0];
     newPlaylist.unshift(track);
@@ -54,7 +54,7 @@ class RadioSet extends Component {
   };
 
   switchLists = (index, fromPlaylist, toPlaylist ) => {
-    const newState = { ...this.state };
+    const newState = this.state;
     const newOrigin = newState[fromPlaylist];
     const newDestination = newState[toPlaylist];
     const track = newOrigin.splice(index, 1)[0];

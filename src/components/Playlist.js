@@ -31,16 +31,6 @@ const Playlist = (props) => {
   const trackCount = props.tracks.length;
   const playtime = calculatePlayTime(tracks);
 
-  const onToggleFavoriteHandler = (index) => {
-    props.toggleAsFavoriteCallback(index, props.side)
-  }
-  const onMoveToTopHandler = (index) => {
-    props.moveTrackToTopCallback(index, props.side)
-  }
-  const onSwitchListsHandler = (index) => {
-    props.switchListsCallback(index, props.side)
-  }
-
   const trackElements = tracks.map((track, i) => {
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
@@ -49,9 +39,9 @@ const Playlist = (props) => {
         key={ track.id }
         index={ i }
         { ...track }
-        toggleAsFavoriteCallback={ onToggleFavoriteHandler }
-        moveTrackToTopCallback={ onMoveToTopHandler }
-        switchListsCallback={ onSwitchListsHandler }
+        toggleAsFavoriteCallback={ () => props.toggleAsFavoriteCallback(i) }
+        moveTrackToTopCallback={ () => props.moveTrackToTopCallback(i) }
+        switchListsCallback={ () => props.switchListsCallback(i) }
       />
     );
   });

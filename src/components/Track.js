@@ -15,19 +15,19 @@ const Track = ({index, title, artist, playtime, albumart, favorite,
         type="checkbox"
         className="track--favorite"
         checked={ !favorite }
-        onChange={ () => toggleAsFavoriteCallback(index) }
+        onChange={ toggleAsFavoriteCallback }
       />
       <p className="track--artist">{artist}</p>
       <p className="track--playtime">{playtime}</p>
       <button
         className="track--control track--to-top"
-        onClick={ () => moveTrackToTopCallback(index) }
+        onClick={ moveTrackToTopCallback }
         >
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
         className="track--control track--switch"
-        onClick={ () => switchListsCallback(index) }
+        onClick={ switchListsCallback }
         >
         <span role="img" aria-label="switch lists">↔</span>
       </button>
@@ -42,9 +42,9 @@ Track.propTypes = {
   playtime: PropTypes.string.isRequired,
   albumart: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
-  toggleAsFavoriteCallback: PropTypes.func.isRequired,
-  moveTrackToTopCallback: PropTypes.func.isRequired,
-  switchListsCallback: PropTypes.func.isRequired
+  // toggleAsFavoriteCallback: PropTypes.func.isRequired,
+  // moveTrackToTopCallback: PropTypes.func.isRequired,
+  // switchListsCallback: PropTypes.func.isRequired
 }
 
 export default Track;

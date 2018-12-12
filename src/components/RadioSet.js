@@ -14,57 +14,55 @@ class RadioSet extends Component {
     }
   };
 
-  toggleAsFavorite = (index, side) => {
-    let morningTracks = this.state.morningTracks;
-    let eveningTracks = this.state.eveningTracks;
-    let track = (side === "Morning" ? morningTracks[index] : eveningTracks[index])
-    let action = (track.favorite ? "Unfavoriting" : "Favoriting")
-    console.log(`${action} ${track.id}. ${track.title}`)
+  toggleAsFavorite = (index, playlist) => {
+    const newState = { ...this.state }
+    const newPlaylist = newState[playlist];
+    const track = newPlaylist[index];
 
-    track.favorite = !track.favorite
-    this.setState({
-      morningTracks: morningTracks,
-      eveningTracks: eveningTracks
-    })
+    let action = (track.favorite ? "Unfavoriting" : "Favoriting");
+    console.log(`${action} ${track.id}. ${track.title}`);
+
+    track.favorite = !track.favorite;
+    this.setState(newState)
+
+    // Dan's approach
+    // I'm not sure how they compare?
+
+    // const newState = {...this.state};
+    // const newPlaylist = [...newState[playlist]];
+    // const track = {...newPlaylist[index]};
+    //
+    // let action = (track.favorite ? "Unfavoriting" : "Favoriting")
+    // console.log(`${action} ${track.id}. ${track.title}`)
+    //
+    // newPlaylist[index] = track;
+    // newState[playlist] = newPlaylist;
+    //
+    // track.favorite = !track.favorite
+    // this.setState( newState )
   }
 
-  moveTrackToTop = (index, side) => {
-    let morningTracks = this.state.morningTracks;
-    let eveningTracks = this.state.eveningTracks;
-    let playlist = (side === "Morning" ? morningTracks : eveningTracks);
-    let track = playlist.splice(index, 1)[0];
-    playlist.unshift(track);
+  moveTrackToTop = (index, playlist) => {
+    const newState = { ...this.state }
+    const newPlaylist = newState[playlist];
+    const track = newPlaylist.splice(index, 1)[0];
+    newPlaylist.unshift(track);
 
-    console.log(`Moving ${track.id}. ${track.title} to top of playlist`)
+    console.log(`Moving ${track.id}. ${track.title} to top of playlist`);
 
-    if (side === "Morning") {
-      this.setState({ morningTracks: playlist })
-    } else {
-      this.setState({ eveningTracks: playlist })
-    }
+    this.setState(newState);
   };
 
-  switchLists = (index, side) => {
-    let morningTracks = this.state.morningTracks;
-    let eveningTracks = this.state.eveningTracks;
-    let playlist = (side === "Morning" ? morningTracks : eveningTracks);
-    let track = playlist.splice(index, 1)[0];
+  switchLists = (index, fromPlaylist, toPlaylist ) => {
+    const newState = { ...this.state };
+    const newOrigin = newState[fromPlaylist];
+    const newDestination = newState[toPlaylist];
+    const track = newOrigin.splice(index, 1)[0];
+    newDestination.unshift(track);
 
-    if (side === "Morning") {
-      morningTracks = playlist;
-      eveningTracks.unshift(track);
-    } else {
-      morningTracks.unshift(track)
-      eveningTracks = playlist
-    }
+    console.log(`Moving ${track.id}. ${track.title} to top of ${toPlaylist} Playlist`)
 
-    let destination = (side === "Morning" ? "Evening" : "Morning")
-    console.log(`Moving ${track.id}. ${track.title} to top of ${destination} Playlist`)
-
-    this.setState({
-      morningTracks: morningTracks,
-      eveningTracks: eveningTracks
-    })
+    this.setState(newState);
   };
 
   render() {
@@ -76,16 +74,16 @@ class RadioSet extends Component {
           <Playlist
             side="Morning"
             tracks={ this.state.morningTracks }
-            toggleAsFavoriteCallback={ this.toggleAsFavorite }
-            moveTrackToTopCallback={ this.moveTrackToTop }
-            switchListsCallback={ this.switchLists }
+            toggleAsFavoriteCallback={ i => this.toggleAsFavorite(i, "morningTracks") }
+            moveTrackToTopCallback={ i => this.moveTrackToTop(i, "morningTracks") }
+            switchListsCallback={ i => this.switchLists(i, "morningTracks", "eveningTracks") }
           />
           <Playlist
             side="Evening"
             tracks={ this.state.eveningTracks }
-            toggleAsFavoriteCallback={ this.toggleAsFavorite }
-            moveTrackToTopCallback={ this.moveTrackToTop }
-            switchListsCallback={ this.switchLists }
+            toggleAsFavoriteCallback={ i => this.toggleAsFavorite(i, "eveningTracks") }
+            moveTrackToTopCallback={ i => this.moveTrackToTop(i, "eveningTracks") }
+            switchListsCallback={ i => this.switchLists(i, "eveningTracks", "morningTracks") }
           />
         </section>
       </div>

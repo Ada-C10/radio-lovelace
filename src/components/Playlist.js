@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import './styles/Playlist.css';
 
 import Track from './Track';
@@ -27,35 +28,43 @@ const calculatePlayTime = (tracks) => {
 
 const Playlist = (props) => {
   const tracks = props.tracks;
-  const trackCount = tracks.length;
+  const trackCount = props.tracks.length;
   const playtime = calculatePlayTime(tracks);
+
   const trackElements = tracks.map((track, i) => {
-    // We use "spread syntax" here to pass in all the properties of 
+    // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
     return (
       <Track
-        key={i}
-        {...track}
+        key={ track.id }
+        index={ i }
+        { ...track }
+        toggleAsFavoriteCallback={ () => props.toggleAsFavoriteCallback(i) }
+        moveTrackToTopCallback={ () => props.moveTrackToTopCallback(i) }
+        switchListsCallback={ () => props.switchListsCallback(i) }
       />
     );
   });
 
   return (
     <div className="playlist">
-      <h2>{props.side} Playlist</h2>
+      <h2>{ props.side } Playlist</h2>
       <p>
-        {trackCount} tracks - {playtime}
+        { trackCount } tracks - { playtime }
       </p>
       <ul className="playlist--track-list">
-        {trackElements}
+        { trackElements }
       </ul>
     </div>
   );
 }
 
 Playlist.propTypes = {
-  tracks: PropTypes.array,
-  side: PropTypes.string,
+  tracks: PropTypes.array.isRequired,
+  side: PropTypes.string.isRequired,
+  toggleAsFavoriteCallback: PropTypes.func.isRequired,
+  moveTrackToTopCallback: PropTypes.func.isRequired,
+  switchListsCallback: PropTypes.func.isRequired,
 }
 
 export default Playlist;
